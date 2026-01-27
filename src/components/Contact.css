@@ -1,0 +1,205 @@
+
+.contact-section {
+    padding-bottom: 8rem;
+    position: relative;
+    overflow: hidden; /* Prevent blob spill */
+}
+
+/* Background blob for fun */
+.contact-section::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+    filter: blur(50px);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+@media (min-width: 1024px) {
+    .contact-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.contact-intro {
+    font-size: 1.25rem;
+    color: #d1d5db;
+    margin-bottom: 2rem;
+    line-height: 1.625;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    color: #d1d5db;
+    transition: all 0.3s;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid transparent;
+}
+
+.contact-item:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.05);
+    transform: translateX(10px);
+}
+
+.contact-item .btn-icon {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--primary);
+    width: 3rem;
+    height: 3rem;
+}
+
+.contact-item:hover .btn-icon {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Stats Container */
+.stats-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    perspective: 1000px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(15, 15, 15, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.25rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--card-color, var(--primary));
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: var(--card-color, var(--primary));
+    background: rgba(20, 20, 20, 0.8);
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+}
+
+.stat-card:hover::before {
+    opacity: 1;
+}
+
+.leetcode { --card-color: #ffa116; } /* LeetCode Orange */
+.gfg { --card-color: #2f8d46; }      /* GFG Green */
+.github { --card-color: #ffffff; }    /* GitHub White */
+
+.stat-icon-wrapper {
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--card-color);
+    transition: all 0.3s;
+}
+
+.stat-card:hover .stat-icon-wrapper {
+    background: var(--card-color);
+    color: black; /* Contrast for icons on color */
+    transform: rotate(5deg);
+}
+
+.stat-info {
+    flex: 1;
+}
+
+.stat-info h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.stat-numbers {
+    display: flex;
+    gap: 2rem;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--card-color);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Big Background Icon Styles */
+.card-bg-icon {
+    position: absolute;
+    right: -20px;
+    bottom: -20px;
+    width: 140px;
+    height: 140px;
+    opacity: 0.1;
+    transform: rotate(15deg);
+    pointer-events: none;
+    z-index: 0;
+    transition: all 0.5s ease;
+    object-fit: contain;
+}
+
+.stat-card:hover .card-bg-icon {
+    transform: rotate(0deg) scale(1.1);
+    opacity: 0.15;
+}
+
+/* Ensure content stays on top */
+.stat-icon-wrapper,
+.stat-info {
+    position: relative;
+    z-index: 10;
+}

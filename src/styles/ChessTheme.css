@@ -1,0 +1,123 @@
+:root {
+  /* Classic Chess Theme Variables (White & Black) */
+  --chess-bg-dark: #ffffff; /* Main BG is White */
+  --chess-bg-light: #f5f5f5;
+  --chess-board-black: #000000; /* Strict Black */
+  --chess-board-white: #e0e0e0;
+  --chess-accent-purple: #000000; /* Accent is also Black for strict monochrome, or deep royal blue? Let's go High Contrast Black & Gold/Blue */
+  --chess-accent-blue: #000000;
+  
+  /* Redefining for a "Premium Print" look */
+  --chess-text-primary: #000000;
+  --chess-text-secondary: #404040;
+  --chess-text-dark: #000000;
+  
+  --chess-gold: #c5a059; /* Classic timber color */
+}
+
+/* Chess Theme Scoped Styles */
+.chess-theme {
+  background-color: var(--chess-bg-dark);
+  color: var(--chess-text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.chess-theme h1, .chess-theme h2, .chess-theme h3, .chess-theme h4, .chess-theme h5, .chess-theme h6 {
+  font-family: var(--font-display);
+}
+
+.chess-theme .text-primary {
+  color: var(--chess-board-black);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.chess-theme .btn-primary {
+  background-color: var(--chess-board-black);
+  color: white;
+  border: 1px solid black;
+}
+
+.chess-theme .btn-primary:hover {
+  background-color: white;
+  color: black;
+}
+
+/* Card overrides for Light Mode */
+.chess-theme .card, .chess-theme .chess-match-card, .chess-theme .chess-skill-card, .chess-theme .chess-exp-card .chess-exp-content {
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px #000000; /* Neo-brutalist / Retro shadow */
+  color: black;
+}
+.chess-theme .chess-match-card:hover, .chess-theme .chess-skill-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #000000;
+}
+
+/* Typography Overrides */
+.chess-theme h1, .chess-theme h2, .chess-theme h3 {
+    font-weight: 900;
+    letter-spacing: -0.05em;
+}
+
+.chess-theme .chess-notation {
+    color: #000000;
+    background: #f0f0f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Shared Chess Buttons */
+.chess-btn-primary {
+    background: #000000;
+    color: white !important;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: all 0.2s;
+    border: 2px solid #000000;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.chess-btn-primary:hover {
+    background: #333333;
+    transform: translateY(-2px);
+    color: white !important;
+}
+
+.chess-btn-secondary {
+    background: white;
+    border: 2px solid #000000;
+    color: #000000 !important;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.chess-btn-secondary:hover {
+    background: #f0f0f0;
+    box-shadow: 4px 4px 0px #000000;
+    transform: translate(-2px, -2px);
+    color: #000000 !important;
+}

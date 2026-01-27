@@ -1,0 +1,127 @@
+/* ChessHero.css */
+.chess-hero-section {
+    background-color: var(--chess-bg-dark);
+    position: relative;
+    color: var(--chess-text-primary);
+    overflow: hidden;
+}
+
+/* Board Grid Pattern */
+.board-grid {
+    background-image: 
+        linear-gradient(45deg, #000000 25%, transparent 25%), 
+        linear-gradient(-45deg, #000000 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, #000000 75%), 
+        linear-gradient(-45deg, transparent 75%, #000000 75%);
+    background-size: 100px 100px;
+    background-position: 0 0, 0 50px, 50px -50px, -50px 0px;
+    opacity: 0.03; 
+    transform: perspective(100vh) rotateX(60deg) scale(2);
+    transform-origin: center top;
+}
+
+/* King Background Image - Massive and overlapping */
+.king-watermark-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40vmin;
+    height: 40vmin;
+    background-image: url('/king.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 0;
+    filter: grayscale(100%);
+}
+
+.chess-hero-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Left align for poster look */
+    text-align: left;
+    max-width: 1000px;
+    width: 100%;
+    padding: 0 2rem;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.hero-title .highlight {
+    color: transparent;
+    -webkit-text-stroke: 2px #000000;
+    display: block; /* Make "Vivek Anand" stand on its own line */
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 500;
+    max-width: 600px;
+    border-left: 4px solid #000000;
+    padding-left: 2rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+/* explicit styles to fix layout issues */
+.chess-social-container {
+    position: fixed !important;
+    right: 3rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    z-index: 100 !important;
+    width: auto !important;
+    justify-content: center !important;
+    padding-left: 0 !important;
+}
+
+/* Hide lateral sidebar on mobile to avoid overlap, will show below content if needed */
+@media (max-width: 768px) {
+    .chess-social-container {
+        position: relative !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        margin-top: 2rem !important;
+        padding-left: 0 !important;
+    }
+}
+
+.chess-social-icon {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 44px; /* Slightly smaller for sidebar */
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid #000000 !important;
+    color: #000000 !important;
+    background: white !important; /* Stand out more against potentially busy backgrounds */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+}
+
+.chess-social-icon:hover {
+    background: #000000 !important;
+    color: #ffffff !important;
+    transform: translateX(-5px) scale(1.1);
+    box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+}
