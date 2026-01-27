@@ -4,7 +4,7 @@ export const resumeData = {
   personalInfo: {
     name: "Vivek Anand",
     title: "Full-Stack Developer",
-    email: ".jsx@gmail.com",
+    email: "vivek.jsx@gmail.com",
     phone: "+91-7352648994",
     location: "Patna, Bihar - 800024, India",
     image: "/WhatsApp Image 2025-12-18 at 6.15.37 PM.jpeg",
