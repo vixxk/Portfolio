@@ -8,7 +8,7 @@ export const resumeData = {
     phone: "+91-7352648994",
     location: "Patna, Bihar - 800024, India",
     image: "/WhatsApp Image 2025-12-18 at 6.15.37 PM.jpeg",
-    resumeLink: "https://drive.google.com/file/d/1COHG4BeXItg5TRSEjDrvDcCxO1_iyZ9a/view",
+    resumeLink: "https://drive.google.com/file/d/1K17sb7lSPswW5C35fLPp-kvq6G6OAQKR/view?usp=sharing",
     social: {
       linkedin: "https://www.linkedin.com/in/vivek-anand-a5a455288/",
       github: "https://github.com/vixxk",
