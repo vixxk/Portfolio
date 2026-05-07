@@ -31,7 +31,7 @@ const ChampionshipCard = ({ role, company, period, location, points, stack, link
                 <div className="champ-moves-list">
                     {points.map((point, idx) => (
                         <div key={idx} className="champ-move">
-                            <div className="move-notation">{idx + 1}. e4</div>
+                            <div className="move-notation">{idx + 1}. {['e4', 'Nf3', 'd4', 'Bb5', 'O-O', 'Re1', 'd3', 'c3'][idx % 8]}</div>
                             <div className="move-desc">{point}</div>
                         </div>
                     ))}

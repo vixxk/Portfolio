@@ -8,7 +8,7 @@ export const resumeData = {
     phone: "+91-7352648994",
     location: "Patna, Bihar - 800024, India",
     image: "/WhatsApp Image 2025-12-18 at 6.15.37 PM.jpeg",
-    resumeLink: "https://drive.google.com/file/d/1K17sb7lSPswW5C35fLPp-kvq6G6OAQKR/view?usp=sharing",
+    resumeLink: "https://drive.google.com/file/d/1t3m0I_nhIW8AWRtzA9StrU0Srl2ioi9z/view?usp=sharing",
     social: {
       linkedin: "https://www.linkedin.com/in/vivek-anand-a5a455288/",
       github: "https://github.com/vixxk",
@@ -17,9 +17,9 @@ export const resumeData = {
     },
     stats: {
         leetcode: {
-            solved: 450, // Fallback total
-            dsa: 80,
-            sql: 35,
+            solved: 250, // Fallback total
+            dsa: 180,
+            sql: 50,
             profile: "vivek727anand"
         },
         gfg: {
@@ -29,7 +29,7 @@ export const resumeData = {
             profile: "vixx"
         },
         github: {
-            commits: 1200, // Fallback
+            commits: 600, // Fallback
             repos: 25,    // Fallback
             stars: 25,     // Fallback updated
             username: "vixxk"
@@ -55,18 +55,34 @@ export const resumeData = {
   ],
   experience: [
     {
-      company: "Apni Estate Corporation",
-      role: "Product / Full-Stack Development Intern",
-      period: "Dec 2025 - Ongoing",
+      company: "Hyrego - AI Career Assistant (Freelance)",
+      role: "Full-Stack GenAI Developer",
+      period: "Apr 2026",
       location: "Remote, India",
-      stack: ["React.js", "Node.js", "Express.js", "MongoDB", "ImageKit", "Nodemailer"],
+      stack: ["AWS", "Redis", "React.js", "Node.js", "Express.js", "MongoDB", "Fireworks AI"],
       points: [
-          "Built a role-based real estate & services marketplace with responsive, mobile-first UI, authentication, and mailing services from scratch.",
-          "Registered startup under Startup Tripura and recognized by the Directorate of Information Technology, Government of Tripura."
+        "Integrated Redis-based caching layer for job search results, significantly reducing latency and eliminating redundant third-party API calls, leading to improved performance and cost reduction by 20%.",
+        "Implemented core features including AI Mock Interviews, Spoken English Tutor, Job Search & Job Posting modules powered by Fireworks AI (Model - Qwen3-8B).",
+        "Deployed a scalable full-stack system using AWS EC2 (backend), AWS S3 (avatars & PDFs) and bunny.net (video storage) ensuring efficient media handling."
       ],
       links: {
-          github: "https://github.com/vixxk/Apni_Estate",
-          live: "https://www.apniestate.com/"
+        github: "https://github.com/vixxk/AIJobPortal",
+        live: "https://hyrego.com/"
+      }
+    },
+    {
+      company: "Apni Estate Pvt. Ltd.",
+      role: "Product / Full-Stack Development Intern",
+      period: "Dec 2025 - Mar 2026",
+      location: "Remote, India",
+      stack: ["AWS", "React.js", "Express.js", "MongoDB", "ImageKit", "Nodemailer"],
+      points: [
+        "Designed and developed a role-based real estate & services marketplace from scratch, featuring a responsive, mobile-first UI, secure authentication and integrated email services.",
+        "Deployed and managed the backend on AWS EC2 and implemented a CI/CD pipeline for automated builds and production deployments."
+      ],
+      links: {
+        github: "https://github.com/vixxk/Apni_Estate",
+        live: "https://www.apniestate.com/"
       }
     }
   ],
@@ -114,8 +130,8 @@ export const resumeData = {
   skills: {
     languages: ["C", "C++", "JavaScript", "TypeScript"],
     web: ["HTML", "CSS", "React.js", "Node.js", "Next.js", "Express.js", "Socket.IO"],
-    ai: ["Generative AI", "RAG", "Agentic AI Systems", "LangChain", "OpenAI API", "Gemini API"],
+    ai: ["Generative AI", "RAG", "Agentic AI Systems", "LangChain","Ragas", "Fireworks AI"],
     database: ["MongoDB", "MySQL", "PostgreSQL", "Qdrant"],
-    tools: ["AWS", "Git", "Linux", "VS Code", "Postman", "Redux Toolkit", "Tailwind CSS", "ShadCN", "Docker"]
+    tools: ["AWS", "Git", "Linux", "VS Code", "Postman", "Redis", "Tailwind CSS", "ShadCN", "Docker"]
   }
 };
