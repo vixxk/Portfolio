@@ -1,0 +1,263 @@
+.chess-experience-section {
+    padding: 6rem 0;
+    position: relative;
+    background: var(--chess-bg-dark);
+    text-align: center;
+    overflow: hidden;
+}
+
+.chess-bg-decoration {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    opacity: 0.04;
+    pointer-events: none;
+    color: #000000;
+}
+
+.chess-experience-header {
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 10;
+}
+
+.chess-experience-title {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #000000;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.04em;
+}
+
+.chess-experience-highlight {
+    color: transparent;
+    -webkit-text-stroke: 2px #000000;
+}
+
+.chess-header-underline {
+    width: 80px;
+    height: 6px;
+    background: #000000;
+    margin: 0 auto;
+}
+
+.chess-exp-timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 24px;
+}
+
+.chess-exp-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #000000;
+}
+
+.chess-championship-card {
+    background: #ffffff;
+    border: 4px solid #000000;
+    padding: 0; 
+    margin-bottom: 4rem;
+    position: relative;
+    box-shadow: 12px 12px 0px #000000;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-align: left;
+    max-width: 760px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.chess-championship-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 16px 16px 0px #000000;
+}
+
+.champ-header {
+    background: #000000;
+    color: #ffd700; /* Gold */
+    padding: 1.25rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid #000000;
+}
+
+.champ-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.champ-championship-name {
+    font-weight: 900;
+    tracking: 0.1em;
+    font-size: 1.1rem;
+}
+
+.champ-trophy {
+    color: #ffd700;
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+}
+
+.champ-year {
+    font-family: 'Space Grotesk', monospace;
+    font-weight: 700;
+    background: #ffd700;
+    color: #000000;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.85rem;
+}
+
+.champ-body {
+    padding: 2.25rem;
+}
+
+.champ-role {
+    font-size: 1.85rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    color: #000000;
+}
+
+.champ-company {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #444444;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.crown-icon {
+    color: #000000;
+}
+
+.champ-separator {
+    margin: 0 0.5rem;
+}
+
+.champ-moves-list {
+    margin-bottom: 2.5rem;
+}
+
+.champ-move {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    align-items: flex-start;
+}
+
+.move-notation {
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    color: #000000;
+    background: #e5e5e5;
+    padding: 0.1rem 0.5rem;
+    height: fit-content;
+    border: 1px solid #000000;
+}
+
+.move-desc {
+    color: #333333;
+}
+
+.champ-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    border-top: 2px dashed #000000;
+    padding-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.champ-tech-tag {
+    background: #ffffff;
+    border: 2px solid #000000;
+    color: #000000;
+    font-weight: 700;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.75rem;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+}
+
+.chess-championship-card:hover .champ-tech-tag {
+    background: #000000;
+    color: #ffffff;
+}
+
+.champ-links-container {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #e5e5e5;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.chess-btn-primary {
+    background: #000000;
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    transition: all 0.2s;
+    border: 2px solid #000000;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+    min-width: 160px;
+}
+
+.chess-btn-primary:hover {
+    background: #333333;
+    transform: translateY(-2px);
+    color: white;
+}
+
+.chess-btn-secondary {
+    background: white;
+    border: 2px solid #000000;
+    color: #000000;
+    padding: 0.6rem 1.5rem;
+    border-radius: 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+    min-width: 160px;
+}
+
+.chess-btn-secondary:hover {
+    background: #f0f0f0;
+    box-shadow: 4px 4px 0px #000000;
+    transform: translate(-2px, -2px);
+    color: #000000;
+}

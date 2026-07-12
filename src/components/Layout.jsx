@@ -1,8 +1,11 @@
-import { Navbar } from './Navbar';
+import { useTheme } from '../context/ThemeContext';
+import { Navbar as DarkNavbar } from './theme/navbar/Navbar';
+import { ChessNavbar as LightNavbar } from './light/navbar/ChessNavbar';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import './Layout.css';
 
 export const Layout = ({ children }) => {
+    const { theme } = useTheme();
     const { scrollYProgress } = useScroll();
     const scaleX = useSpring(scrollYProgress, {
         stiffness: 100,
@@ -18,13 +21,11 @@ export const Layout = ({ children }) => {
                 style={{ scaleX }}
             />
 
-            <Navbar />
+            {theme === 'chess' ? <LightNavbar /> : <DarkNavbar />}
 
-            <main className="container main-content">
+            <main className="main-content">
                 {children}
             </main>
-
-            {/* Footer Removed */}
 
             {/* Background Gradients/Blobs */}
             <div className="bg-effects">
@@ -34,3 +35,4 @@ export const Layout = ({ children }) => {
         </div>
     );
 };
+

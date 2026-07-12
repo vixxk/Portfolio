@@ -50,11 +50,16 @@
 .blob-1 {
   top: -10%;
   left: -10%;
-  background-color: rgba(99, 102, 241, 0.1);
+  background-color: rgba(76, 224, 210, 0.08); /* accent-signal tint */
 }
 
 .blob-2 {
   bottom: -10%;
   right: -10%;
-  background-color: rgba(236, 72, 153, 0.1);
+  background-color: rgba(139, 127, 255, 0.08); /* accent-pop tint */
+}
+
+/* Hide background effects in chess theme to preserve pure chess design */
+.chess-theme .bg-effects {
+  display: none;
 }

@@ -17,7 +17,7 @@ export const resumeData = {
     },
     stats: {
         leetcode: {
-            solved: 250, // Fallback total
+            solved: 280, // Updated solved count
             dsa: 180,
             sql: 50,
             profile: "vivek727anand"
@@ -35,7 +35,7 @@ export const resumeData = {
             username: "vixxk"
         }
     },
-    objective: "MERN Stack Developer with strong DSA roots, building scalable web apps and Generative AI systems (RAG & LLMs)."
+    objective: "MERN Stack Developer with strong DSA roots, building scalable web apps and Generative AI systems (RAG, LLM Workflows and AI Agents)."
   },
   education: [
     {
@@ -130,7 +130,7 @@ export const resumeData = {
   skills: {
     languages: ["C", "C++", "JavaScript", "TypeScript"],
     web: ["HTML", "CSS", "React.js", "Node.js", "Next.js", "Express.js", "Socket.IO"],
-    ai: ["Generative AI", "RAG", "Agentic AI Systems", "LangChain","Ragas", "Fireworks AI"],
+    ai: ["Generative AI", "RAG", "Agentic AI Systems", "LangChain", "LangGraph", "Ragas", "Fireworks AI"],
     database: ["MongoDB", "MySQL", "PostgreSQL", "Qdrant"],
     tools: ["AWS", "Git", "Linux", "VS Code", "Postman", "Redis", "Tailwind CSS", "ShadCN", "Docker"]
   }

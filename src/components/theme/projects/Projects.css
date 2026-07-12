@@ -1,0 +1,264 @@
+.projects-section {
+    position: relative;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1100px) {
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.ide-window {
+    background-color: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    min-height: 480px; /* Longer project cards */
+}
+
+.ide-window:hover {
+    border-color: var(--accent-signal);
+    box-shadow: 0 8px 30px rgba(76, 224, 210, 0.05);
+    transform: translateY(-2px);
+}
+
+.ide-window:focus-within {
+    border-color: var(--accent-signal);
+}
+
+.ide-header {
+    background-color: rgba(10, 14, 23, 0.4);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 38px;
+    padding: 0 0.75rem;
+    user-select: none;
+    gap: 0.5rem;
+}
+
+.ide-tabs {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    min-width: 0;
+    flex-grow: 1;
+}
+
+.ide-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    height: 100%;
+    padding: 0 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    border: none;
+    border-right: 1px solid var(--border-color);
+    background: transparent;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ide-tab.active {
+    background-color: var(--surface);
+    color: var(--accent-signal);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--surface);
+    margin-bottom: -1px;
+    cursor: default;
+}
+
+.ide-tab.clickable {
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.ide-tab.clickable:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
+}
+
+.ide-tab-icon {
+    display: flex;
+    align-items: center;
+}
+
+.ide-tab-icon.active {
+    color: var(--accent-signal);
+}
+
+.ide-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.ide-action-btn {
+    color: var(--accent-signal);
+    background-color: rgba(76, 224, 210, 0.08);
+    border: 1px solid var(--accent-signal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 4px;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+    box-shadow: 0 2px 8px rgba(76, 224, 210, 0.05);
+}
+
+.ide-action-btn:hover {
+    color: var(--bg) !important;
+    background-color: var(--accent-signal);
+    box-shadow: 0 4px 12px rgba(76, 224, 210, 0.25);
+    transform: translateY(-1px);
+}
+
+.ide-action-btn:focus-visible {
+    outline: 2px solid var(--accent-signal);
+    outline-offset: 1px;
+}
+
+.ide-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.ide-terminal-prompt {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.terminal-prefix {
+    color: var(--accent-signal);
+    font-weight: 500;
+}
+
+.terminal-command {
+    color: var(--accent-warm);
+}
+
+.ide-console-date {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    opacity: 0.8;
+    text-align: left;
+}
+
+.ide-console-output {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.ide-output-line {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.ide-output-bullet {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent-pop);
+    user-select: none;
+    opacity: 0.75;
+    margin-top: 0.2rem;
+    white-space: nowrap;
+}
+
+.ide-output-text {
+    font-family: var(--font-sans);
+    font-size: 0.825rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.ide-json-container {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+    background-color: rgba(10, 14, 23, 0.35);
+    border: 1px solid rgba(76, 224, 210, 0.05);
+    border-radius: 4px;
+    padding: 1rem;
+    max-height: 310px; /* Increased to fit JSON without scrolling */
+    overflow-y: auto;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+}
+
+.ide-json-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari/Opera */
+}
+
+.json-line {
+    white-space: pre-wrap;
+}
+
+.indent-1 {
+    padding-left: 1.25rem;
+}
+
+.indent-2 {
+    padding-left: 2.5rem;
+}
+
+.json-key {
+    color: var(--accent-signal);
+}
+
+.json-value {
+    color: var(--accent-warm);
+}
+
+.json-string {
+    color: var(--text-primary);
+}
+
+.json-brace {
+    color: var(--accent-pop);
+}

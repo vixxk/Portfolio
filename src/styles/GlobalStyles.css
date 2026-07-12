@@ -1,25 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
 
 :root {
-  --bg-dark: #0a0a0a;
-  --bg-card: #171717;
-  --bg-hover: #262626;
+  /* Retrieval Space Theme (Dark Mode) */
+  --bg: #0A0E17;
+  --surface: #121A2E;
+  --surface-hover: #1B2644;
+  --text-primary: #E9EDF5;
+  --text-muted: #8891A8;
+  --accent-signal: #4CE0D2;
+  --accent-warm: #FFB454;
+  --accent-pop: #8B7FFF;
+
+  /* Backward Compatibility Mapping */
+  --bg-dark: var(--bg);
+  --bg-card: var(--surface);
+  --bg-hover: var(--surface-hover);
   
-  --primary: #6366f1;
-  --primary-hover: #4f46e5;
-  --primary-glow: rgba(99, 102, 241, 0.5);
+  --primary: var(--accent-signal);
+  --primary-hover: #3bcbc2; /* Slightly darker teal for hover */
+  --primary-glow: rgba(76, 224, 210, 0.2);
   
-  --secondary: #ec4899;
-  --secondary-glow: rgba(236, 72, 153, 0.5);
+  --secondary: var(--accent-pop);
+  --secondary-glow: rgba(139, 127, 255, 0.2);
   
-  --text-main: #ffffff;
-  --text-muted: #9ca3af; /* gray-400 */
-  --text-dim: #6b7280;   /* gray-500 */
+  --text-main: var(--text-primary);
+  --text-dim: var(--text-muted);
   
-  --border-color: rgba(255, 255, 255, 0.1);
+  --border-color: rgba(76, 224, 210, 0.15); /* Tinted with accent-signal */
   
-  --font-sans: 'Inter', sans-serif;
-  --font-display: 'Space Grotesk', sans-serif;
+  --font-sans: 'Outfit', sans-serif;
+  --font-display: 'Sora', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
   
   --container-width: 1200px;
 }
@@ -164,3 +175,24 @@ ul {
   white-space: nowrap;
   border-width: 0;
 }
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0E17;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #121A2E;
+  border: 2px solid rgba(76, 224, 210, 0.15);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-signal);
+}
+

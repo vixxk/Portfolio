@@ -1,0 +1,126 @@
+.chess-skills-section {
+    padding: 6rem 1rem;
+    background: transparent;
+}
+
+.chess-skills-header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.chess-section-title {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    color: #000000;
+    margin-bottom: 0.5rem;
+}
+
+.chess-title-highlight {
+    color: transparent;
+    -webkit-text-stroke: 2px #000000;
+}
+
+.chess-section-subtitle {
+    font-size: 1.1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #444444;
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+}
+
+.chess-header-underline {
+    width: 80px;
+    height: 6px;
+    background: #000000;
+    margin: 0 auto;
+}
+
+.chess-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.chess-skill-card {
+    background: #ffffff;
+    border: 3px solid #000000;
+    padding: 2rem;
+    border-radius: 0; /* strict brutalist square */
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 8px 8px 0px #000000;
+    max-width: 365px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.chess-skill-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0px #000000;
+    background: #ffffff;
+}
+
+.piece-icon {
+    font-size: 3.5rem;
+    color: #000000;
+    margin-bottom: 1rem;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+.chess-skill-card:hover .piece-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.chess-skill-category {
+    font-size: 1.35rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 0.5rem;
+}
+
+.chess-skill-desc {
+    color: #444444;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.chess-skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.chess-skill-tag {
+    background: #ffffff;
+    color: #000000;
+    padding: 0.3rem 0.75rem;
+    border-radius: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 2px solid #000000;
+    transition: all 0.2s ease;
+}
+
+.chess-skill-card:hover .chess-skill-tag {
+    background: #000000;
+    color: #ffffff;
+}

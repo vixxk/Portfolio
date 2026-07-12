@@ -1,0 +1,187 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    padding: 1.5rem 0;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    padding: 1rem 0;
+    background: rgba(10, 14, 23, 0.85); /* var(--bg) with opacity */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.15rem;
+    font-weight: 700;
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.logo-icon-img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--accent-signal);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.logo:hover .logo-icon-img {
+    transform: rotate(360deg);
+}
+
+.nav-links {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2.25rem;
+    }
+}
+
+.nav-link {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+}
+
+.nav-link.active {
+    color: var(--accent-signal);
+    text-shadow: 0 0 10px rgba(76, 224, 210, 0.3);
+}
+
+.btn-outline {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    background-color: rgba(76, 224, 210, 0.05);
+    border: 1px solid rgba(76, 224, 210, 0.3);
+    color: var(--accent-signal);
+    padding: 0.45rem 1.15rem;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-outline:hover {
+    background-color: var(--accent-signal);
+    color: var(--bg);
+    border-color: var(--accent-signal);
+    box-shadow: 0 0 15px rgba(76, 224, 210, 0.2);
+}
+
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .mobile-toggle {
+        display: block;
+    }
+}
+
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    background-color: rgba(10, 14, 23, 0.98);
+    backdrop-filter: blur(20px);
+    padding-top: 6rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.mobile-link {
+    font-size: 1.25rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.mobile-link:hover {
+    color: var(--accent-signal);
+}
+
+.chess-theme-toggle {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    border: 2px solid var(--primary);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
+    background: white;
+    margin-left: 1.5rem;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2), 0 0 15px rgba(99, 102, 241, 0.4);
+    border-radius: 4px;
+}
+
+.chess-theme-toggle:hover {
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.3), 0 0 25px rgba(99, 102, 241, 0.7);
+    border-color: white;
+}
+
+.board-square {
+    width: 100%;
+    height: 100%;
+}
+
+.board-square.black {
+    background: #000000;
+}
+
+.board-square.white {
+    background: #ffffff;
+}
