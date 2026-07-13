@@ -155,9 +155,11 @@
 
 @media (max-width: 480px) {
     .chess-hero-content .hero-title {
-        font-size: clamp(2rem, 8vw, 3.2rem);
+        font-size: clamp(2.6rem, 10vw, 3.6rem);
+        line-height: 1.35;
     }
     .chess-hero-content .hero-title .highlight {
-        font-size: clamp(1.3rem, 5.8vw, 2.2rem);
+        font-size: clamp(1.2rem, 6.2vw, 2.4rem);
+        margin-top: 0.5rem;
     }
 }
