@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { resumeData } from '../../../data/resume';
 import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
 import { Link } from 'react-scroll';
@@ -7,55 +7,50 @@ import { InteractiveCanvas } from './InteractiveCanvas';
 import { StatusBadge } from './StatusBadge';
 import './Hero.css';
 
-const useTextScramble = (targetText, delay = 600, duration = 1200, active = true) => {
-    const [text, setText] = useState('');
+const useSequentialPhrases = (phrases, stepDurations = 2500, initialDelay = 600, active = true) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [hasStarted, setHasStarted] = useState(false);
+
     useEffect(() => {
         if (!active) {
-            setText(targetText);
+            setCurrentIndex(phrases.length - 1);
+            setHasStarted(true);
             return;
         }
-        let isMounted = true;
-        const chars = '01#@$%&*<>[]{}__+=?~/\\';
-        let frame = 0;
-        const totalFrames = Math.floor(duration / 16);
-        
-        const timeoutId = setTimeout(() => {
-            const interval = setInterval(() => {
-                if (!isMounted) return clearInterval(interval);
-                frame++;
-                const progress = frame / totalFrames;
-                
-                if (progress >= 1) {
-                    setText(targetText);
-                    clearInterval(interval);
-                    return;
-                }
-                
-                const scrambled = targetText
-                    .split('')
-                    .map((char, index) => {
-                        if (char === ' ') return ' ';
-                        if (index / targetText.length < progress) {
-                            return targetText[index];
-                        }
-                        return chars[Math.floor(Math.random() * chars.length)];
-                    })
-                    .join('');
-                setText(scrambled);
-            }, 16);
-        }, delay);
 
-        return () => {
-            isMounted = false;
-            clearTimeout(timeoutId);
-        };
-    }, [targetText, delay, duration, active]);
-    return text;
+        const startTimer = setTimeout(() => {
+            setHasStarted(true);
+        }, initialDelay);
+
+        return () => clearTimeout(startTimer);
+    }, [initialDelay, active, phrases.length]);
+
+    useEffect(() => {
+        if (!active || !hasStarted) {
+            return;
+        }
+
+        if (currentIndex < phrases.length - 1) {
+            const currentDuration = Array.isArray(stepDurations) 
+                ? (stepDurations[currentIndex] ?? 2500)
+                : stepDurations;
+
+            const timer = setTimeout(() => {
+                setCurrentIndex(prev => prev + 1);
+            }, currentDuration);
+            return () => clearTimeout(timer);
+        }
+    }, [currentIndex, phrases.length, stepDurations, active, hasStarted]);
+
+    return {
+        currentIndex,
+        hasStarted,
+        isResolved: currentIndex === phrases.length - 1
+    };
 };
 
 export const Hero = () => {
     const { personalInfo } = resumeData;
-    const [isResolved, setIsResolved] = useState(false);
     const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
     useEffect(() => {
@@ -63,13 +58,14 @@ export const Hero = () => {
         setPrefersReducedMotion(mediaQuery.matches);
     }, []);
 
-    const scrambledName = useTextScramble(personalInfo.name, 600, 1500, !prefersReducedMotion);
+    const phrases = ["Open To Work", "Full Stack GenAI Developer", personalInfo.name];
 
-    useEffect(() => {
-        setIsResolved(false);
-        const timer = setTimeout(() => setIsResolved(true), 2000);
-        return () => clearTimeout(timer);
-    }, []);
+    const { currentIndex, hasStarted, isResolved } = useSequentialPhrases(
+        phrases,
+        [2500, 3500],
+        600,
+        !prefersReducedMotion
+    );
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -101,9 +97,30 @@ export const Hero = () => {
 
                 <motion.h1 variants={itemVariants} className="hero-title">
                     Hi, I'm <br />
-                    <span className="text-gradient">
-                        {prefersReducedMotion ? personalInfo.name : scrambledName}
-                    </span>
+                    {prefersReducedMotion ? (
+                        <span className="text-gradient">{personalInfo.name}</span>
+                    ) : (
+                        <span style={{ display: 'block', position: 'relative', minHeight: '1.2em', verticalAlign: 'bottom' }}>
+                            <AnimatePresence mode="wait">
+                                {hasStarted && (
+                                    <motion.span
+                                        key={currentIndex}
+                                        className="text-gradient"
+                                        initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
+                                        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                                        exit={{ opacity: 0, y: -20, filter: 'blur(8px)' }}
+                                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                        style={{ 
+                                            display: 'block', 
+                                            whiteSpace: 'nowrap'
+                                        }}
+                                    >
+                                        {phrases[currentIndex]}
+                                    </motion.span>
+                                )}
+                            </AnimatePresence>
+                        </span>
+                    )}
                 </motion.h1>
 
                 <motion.p variants={itemVariants} className="hero-subtitle">

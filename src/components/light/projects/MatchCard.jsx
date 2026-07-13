@@ -55,10 +55,10 @@ export const MatchCard = ({ project, index }) => {
 
             <div className="match-actions">
                 <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="chess-btn-secondary">
-                    <Github size={16} /> Analyze Game
+                    <Github size={13} /> Analyze Game
                 </a>
                 <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="chess-btn-primary">
-                    <ExternalLink size={16} /> Replay Match
+                    <ExternalLink size={13} /> Replay Match
                 </a>
             </div>
         </motion.div>

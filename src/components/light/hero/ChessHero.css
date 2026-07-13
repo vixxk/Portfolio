@@ -64,6 +64,7 @@
 }
 
 .chess-hero-content .hero-title .highlight {
+    font-size: clamp(1.8rem, 5.8vw, 6.2rem);
     color: transparent;
     -webkit-text-stroke: 3px #000000;
     display: block; /* Make "Vivek Anand" stand on its own line */
@@ -143,4 +144,20 @@
     color: #ffffff !important;
     transform: translateX(-4px) scale(1.08);
     box-shadow: 6px 6px 0px rgba(0,0,0,1);
+}
+
+@media (max-width: 768px) {
+    .chess-hero-content .hero-title .highlight {
+        -webkit-text-stroke: 1.5px #000000;
+        font-size: clamp(1.4rem, 5.8vw, 3.8rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .chess-hero-content .hero-title {
+        font-size: clamp(2rem, 8vw, 3.2rem);
+    }
+    .chess-hero-content .hero-title .highlight {
+        font-size: clamp(1.3rem, 5.8vw, 2.2rem);
+    }
 }
