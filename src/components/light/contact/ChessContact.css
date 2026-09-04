@@ -1,6 +1,6 @@
 .chess-contact-section {
     position: relative;
-    padding: 6rem 1rem;
+    padding: 6rem 1rem 0 1rem;
     background: #ffffff;
     color: #000000;
     overflow: hidden;
@@ -108,18 +108,22 @@
     font-family: 'Space Grotesk', monospace;
 }
 
+.chess-stats-wrapper {
+    margin-bottom: 5rem;
+}
+
 .chess-stats-row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
-    margin-bottom: 5rem;
+    margin-bottom: 1.5rem;
 }
 
 .chess-stat-entry {
     border: 3px solid #000000;
     padding: 1.5rem;
     position: relative;
-    background: #f4f4f5;
+    background: #ffffff;
     transition: all 0.3s ease;
     text-decoration: none;
     color: #000000;
@@ -142,6 +146,70 @@
 
 .chess-stat-entry:hover .stat-sub {
     color: #71717a;
+}
+
+.chess-github-heatmap-card {
+    border: 3px solid #000000;
+    padding: 1.75rem 2rem;
+    background: #ffffff;
+    margin-top: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.chess-github-heatmap-card:hover {
+    box-shadow: 8px 8px 0px #000000;
+    transform: translate(-4px, -4px);
+}
+
+.chess-github-heatmap-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+    font-family: 'Space Grotesk', monospace;
+}
+
+.chess-heatmap-label {
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #000000;
+}
+
+.chess-heatmap-user {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #000000;
+    text-decoration: none;
+    border-bottom: 2px solid #000000;
+}
+
+.chess-heatmap-user:hover {
+    background: #000000;
+    color: #ffffff;
+}
+
+.chess-heatmap-scroll {
+    overflow-x: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.75rem 0;
+}
+
+.chess-heatmap-scroll svg,
+.chess-heatmap-scroll img.github-svg-graph {
+    width: 100%;
+    min-width: 820px;
+    height: auto;
+    display: block;
+}
+
+/* Force empty (0-score) squares in SVG fallback graph to pop with clear grey contrast */
+.chess-heatmap-scroll svg rect[data-score="0"],
+.chess-heatmap-scroll svg rect[fill="#EEEEEE"] {
+    fill: #d4d4d8 !important;
 }
 
 .chess-stat-top {
@@ -267,4 +335,9 @@
     background-size: 40px 40px;
     z-index: 0;
     pointer-events: none;
+}
+
+.chess-contact-section .footer-big-name-text {
+    fill: #000000;
+    opacity: 0.12;
 }

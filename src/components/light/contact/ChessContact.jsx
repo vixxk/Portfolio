@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { resumeData } from '../../../data/resume';
 import { Mail, Phone } from 'lucide-react';
 import { ChessStatsGrid } from './ChessStatsGrid';
+import { FooterBigName } from '../../theme/contact/FooterBigName';
 import './ChessContact.css';
 
 export const ChessContact = () => {
@@ -64,6 +65,8 @@ export const ChessContact = () => {
                     </p>
                 </div>
             </div>
+
+            <FooterBigName name={personalInfo.name} />
         </section>
     );
 };

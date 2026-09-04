@@ -1,0 +1,447 @@
+.hero-carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 640px;
+  overflow: hidden;
+  background-color: #050811;
+  color: #ffffff;
+  user-select: none;
+  font-family: var(--font-sans, system-ui, sans-serif);
+}
+
+/* Background Graded Image */
+.hero-backdrop-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Legibility Wash & Vignette */
+.hero-wash-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(90deg, rgba(5, 8, 17, 0.95) 0%, rgba(5, 8, 17, 0.8) 45%, rgba(5, 8, 17, 0.45) 100%),
+    linear-gradient(180deg, rgba(5, 8, 17, 0.85) 0%, transparent 35%, rgba(5, 8, 17, 0.95) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-grain-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Top Bar (Shifted below fixed main navbar) */
+.hero-top-bar {
+  position: absolute;
+  inset-x: 0;
+  top: 4.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  z-index: 20;
+}
+
+.hero-brand {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-signal, #4ce0d2);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.hero-top-badge {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(18, 26, 46, 0.85);
+  border: 1px solid rgba(76, 224, 210, 0.3);
+  padding: 0.35rem 1rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(10px);
+}
+
+/* Headline Block (Top 65% of screen) */
+.hero-headline-block {
+  position: absolute;
+  inset-x: 0;
+  top: 0;
+  height: 64%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 6.8rem 3rem 0.5rem 3rem;
+  z-index: 15;
+}
+
+.hero-headline-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 950px;
+}
+
+.hero-headline-header-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.hero-title {
+  font-family: var(--font-display, system-ui);
+  font-size: clamp(1.9rem, 3.4vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0;
+  padding-top: 0.2rem;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85);
+}
+
+.hero-title-line {
+  display: block;
+  padding-top: 0.15em;
+  padding-bottom: 0.1em;
+}
+
+/* Subtitle & Action Buttons Row */
+.hero-subtitle-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.2rem;
+}
+
+.hero-credit-text {
+  font-size: 1.05rem;
+  color: var(--accent-signal, #4ce0d2);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.hero-action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hero-action-btn {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.55rem 1.25rem;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: pointer;
+}
+
+.hero-action-btn.primary {
+  background: var(--accent-signal, #4ce0d2);
+  color: #050811;
+  border: 1px solid var(--accent-signal, #4ce0d2);
+  box-shadow: 0 4px 20px rgba(76, 224, 210, 0.35);
+}
+
+.hero-action-btn.primary:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(255, 255, 255, 0.4);
+}
+
+.hero-action-btn.secondary {
+  background: rgba(18, 26, 46, 0.85);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+.hero-action-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.hero-action-btn.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.hero-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.1rem;
+}
+
+/* Tech Stack Badges */
+.hero-stack-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.1rem;
+}
+
+.hero-stack-pill {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: rgba(18, 26, 46, 0.85);
+  border: 1px solid rgba(76, 224, 210, 0.35);
+  color: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+}
+
+/* Key Impact Points */
+.hero-points-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-width: 780px;
+  margin-top: 0.1rem;
+}
+
+.hero-point-item {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.4;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.hero-point-bullet {
+  color: var(--accent-signal, #4ce0d2);
+  font-weight: 900;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+/* Filmstrip Track (Anchored cleanly in bottom 35% of screen) */
+.hero-strip-container {
+  position: absolute;
+  inset-x: 0;
+  top: 65%;
+  z-index: 15;
+  width: 100%;
+}
+
+.hero-strip-track {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  width: max-content;
+  height: 100%;
+}
+
+.hero-card-button {
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: rgba(10, 15, 30, 0.85);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: border-color 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(12px);
+}
+
+.hero-card-button.active-card {
+  border-color: var(--card-accent, #4ce0d2);
+  box-shadow: 0 0 30px rgba(76, 224, 210, 0.4);
+}
+
+.hero-card-logo-box {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.12) 0%, rgba(5, 8, 17, 0.9) 100%);
+}
+
+.hero-card-logo-img {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.7));
+  transition: transform 0.35s ease;
+}
+
+.hero-card-button:hover .hero-card-logo-img {
+  transform: scale(1.12);
+}
+
+.hero-card-title-overlay {
+  position: absolute;
+  bottom: 0;
+  inset-x: 0;
+  padding: 0.5rem 0.4rem;
+  background: linear-gradient(180deg, transparent 0%, rgba(5, 8, 17, 0.98) 100%);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-align: center;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Progress Rail (Moved to Bottom Right Side) */
+.hero-progress-rail {
+  position: absolute;
+  right: 3rem;
+  bottom: 1.5rem;
+  width: 200px;
+  z-index: 20;
+}
+
+.hero-rail-nums {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 700;
+}
+
+.hero-rail-track {
+  position: relative;
+  margin-top: 0.4rem;
+  height: 3px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 2px;
+}
+
+.hero-rail-indicator {
+  position: absolute;
+  inset-y: 0;
+  background: var(--accent-signal, #4ce0d2);
+  box-shadow: 0 0 10px var(--accent-signal, #4ce0d2);
+  border-radius: 2px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   CHESS / MONOCHROME BLACK & WHITE THEME OVERRIDES
+   ───────────────────────────────────────────────────────────── */
+.hero-carousel-container.theme-chess {
+  background-color: #0c0d12;
+  color: #ffffff;
+}
+
+.hero-carousel-container.theme-chess .hero-backdrop-img {
+  filter: grayscale(100%) brightness(0.88) contrast(1.1);
+}
+
+.hero-carousel-container.theme-chess .hero-wash-overlay {
+  background: 
+    linear-gradient(90deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.5) 45%, rgba(0, 0, 0, 0.2) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.65) 0%, transparent 40%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+.hero-carousel-container.theme-chess .hero-brand {
+  color: #ffffff;
+}
+
+.hero-carousel-container.theme-chess .hero-credit-text {
+  color: #ffffff;
+}
+
+.hero-carousel-container.theme-chess .hero-stack-pill {
+  background: rgba(18, 18, 22, 0.85);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+
+.hero-carousel-container.theme-chess .hero-point-bullet {
+  color: #ffffff;
+}
+
+.hero-carousel-container.theme-chess .hero-action-btn.primary {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.35);
+}
+
+.hero-carousel-container.theme-chess .hero-action-btn.primary:hover {
+  background: #e4e4e7;
+  color: #000000;
+}
+
+.hero-carousel-container.theme-chess .hero-action-btn.secondary {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.hero-carousel-container.theme-chess .hero-card-button {
+  background: rgba(15, 15, 18, 0.85);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.hero-carousel-container.theme-chess .hero-card-button.active-card {
+  border-color: #ffffff !important;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+.hero-carousel-container.theme-chess .hero-card-logo-box {
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, rgba(5, 5, 8, 0.9) 100%);
+}
+
+.hero-carousel-container.theme-chess .hero-card-logo-img {
+  filter: grayscale(100%) drop-shadow(0 6px 16px rgba(0, 0, 0, 0.85));
+}
+
+.hero-carousel-container.theme-chess .hero-rail-indicator {
+  background: #ffffff;
+  box-shadow: 0 0 10px #ffffff;
+}

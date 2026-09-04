@@ -6,7 +6,7 @@ export const resumeData = {
     title: "Full-Stack Developer",
     email: "vivek.jsx@gmail.com",
     phone: "+91-7352648994",
-    location: "Patna, Bihar - 800024, India",
+    location: "Mohali, Punjab, India",
     image: "/WhatsApp Image 2025-12-18 at 6.15.37 PM.jpeg",
     resumeLink: "https://drive.google.com/file/d/1TlqZ3I-6xOdGNnBBl5wed7p4ODQQQjKr/view?usp=sharing",
     social: {
@@ -30,7 +30,7 @@ export const resumeData = {
         },
         github: {
             commits: 600, // Fallback
-            repos: 25,    // Fallback
+            repos: "40+", // Updated repo count
             stars: 25,     // Fallback updated
             username: "vixxk"
         }
@@ -115,10 +115,10 @@ export const resumeData = {
     },
     {
       title: "KNOWCHAIN – RAG Playground",
-      stack: ["React.js", "Node.js", "Express", "LangChain", "Qdrant DB", "Gemini API", "Puppeteer"],
+      stack: ["React.js", "Node.js", "Express", "LangChain", "Qdrant DB", "Ragas", "LangSmith", "Gemini API", "Puppeteer"],
       date: "Jun 2025",
       points: [
-        "Engineered a Retrieval-Augmented Generation (RAG) playground enabling conversational Q&A over PDFs, websites, and text sources.",
+        "Engineered a Retrieval-Augmented Generation (RAG) playground with Ragas evaluation suite for benchmarking retrieval quality and LangSmith for real-time telemetry & cloud tracing.",
         "Implemented LangChain pipelines with automatic chunking, Qdrant vector storage, and an Express-based backend using Puppeteer for scraping, uploads, and on-demand vector generation."
       ],
       links: {
@@ -130,7 +130,7 @@ export const resumeData = {
   skills: {
     languages: ["C", "C++", "JavaScript", "TypeScript"],
     web: ["HTML", "CSS", "React.js", "Node.js", "Next.js", "Express.js", "Socket.IO"],
-    ai: ["Generative AI", "RAG", "Agentic AI Systems", "LangChain", "LangGraph", "Ragas", "Fireworks AI"],
+    ai: ["Generative AI", "RAG", "Agentic AI Systems", "LangChain", "LangGraph", "Ragas", "LangSmith", "Fireworks AI"],
     database: ["MongoDB", "MySQL", "PostgreSQL", "Qdrant"],
     tools: ["AWS", "Git", "Linux", "VS Code", "Postman", "Redis", "Tailwind CSS", "ShadCN", "Docker"]
   }

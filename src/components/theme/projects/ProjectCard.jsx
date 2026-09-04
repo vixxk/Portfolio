@@ -4,6 +4,7 @@ import { Github, ExternalLink } from 'lucide-react';
 import { ProjectTabs } from './ProjectTabs';
 import { ProjectConsole } from './ProjectConsole';
 import { ProjectStack } from './ProjectStack';
+import { ProjectBgTitle } from './ProjectBgTitle';
 
 export const ProjectCard = ({ project, index }) => {
     const [activeTab, setActiveTab] = useState('project');
@@ -68,6 +69,11 @@ export const ProjectCard = ({ project, index }) => {
                         stack={project.stack}
                     />
                 )}
+            </div>
+
+            {/* Bottom Project Name Background */}
+            <div className="ide-card-footer">
+                <ProjectBgTitle title={project.title} />
             </div>
         </motion.div>
     );

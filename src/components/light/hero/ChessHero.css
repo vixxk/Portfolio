@@ -61,6 +61,8 @@
     margin-bottom: 2rem;
     text-transform: uppercase;
     color: #000000;
+    text-shadow: none;
+    filter: none;
 }
 
 .chess-hero-content .hero-title .highlight {
@@ -68,6 +70,8 @@
     color: transparent;
     -webkit-text-stroke: 3px #000000;
     display: block; /* Make "Vivek Anand" stand on its own line */
+    text-shadow: none;
+    filter: none;
 }
 
 .chess-hero-content .hero-subtitle {

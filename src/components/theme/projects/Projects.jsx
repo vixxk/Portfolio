@@ -17,7 +17,7 @@ export const Projects = () => {
                 >
                     <span className="section-eyebrow">// retrieve_modules</span>
                     <h2 className="text-3xl font-display font-bold">
-                        Featured <span className="text-gradient">Projects</span>
+                        Self <span className="text-gradient">Projects</span>
                     </h2>
                     <div className="section-line"></div>
                 </motion.div>

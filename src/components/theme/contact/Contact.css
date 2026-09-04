@@ -1,6 +1,6 @@
 .contact-section {
     position: relative;
-    padding-bottom: 6rem;
+    padding-bottom: 0;
 }
 
 .stats-bar-wrapper {
@@ -30,6 +30,7 @@
 }
 
 .stat-group {
+    position: relative;
     background-color: rgba(18, 26, 46, 0.35);
     border: 1px solid var(--border-color);
     border-radius: 4px;
@@ -37,11 +38,34 @@
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    transition: border-color 0.3s ease;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    overflow: hidden;
 }
 
 .stat-group:hover {
-    border-color: rgba(76, 224, 210, 0.25);
+    border-color: rgba(76, 224, 210, 0.4);
+    background-color: rgba(18, 26, 46, 0.65);
+    transform: translateY(-3px);
+}
+
+.stat-card-bg {
+    position: absolute;
+    bottom: -22px;
+    right: -22px;
+    width: 135px;
+    height: 135px;
+    opacity: 0.08;
+    transform: rotate(-15deg);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    filter: grayscale(100%) invert(1);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.stat-group:hover .stat-card-bg {
+    opacity: 0.22;
+    transform: rotate(0deg) scale(1.1);
 }
 
 .stat-source {
@@ -51,6 +75,8 @@
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-weight: 600;
+    position: relative;
+    z-index: 1;
 }
 
 .stat-metrics {
@@ -58,6 +84,8 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
+    position: relative;
+    z-index: 1;
 }
 
 .stat-metric-item {
@@ -87,6 +115,78 @@
     width: 1px;
     height: 32px;
     background-color: rgba(76, 224, 210, 0.12);
+}
+
+/* GitHub Heatmap Calendar Styling */
+.github-heatmap-container {
+    margin-top: 1.5rem;
+    padding: 1.75rem 2rem;
+    background-color: rgba(18, 26, 46, 0.35);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.github-heatmap-container:hover {
+    border-color: rgba(76, 224, 210, 0.4);
+    background-color: rgba(18, 26, 46, 0.55);
+}
+
+.github-heatmap-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+}
+
+.github-heatmap-title {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+
+.github-profile-link {
+    font-size: 0.8rem;
+    color: var(--accent-signal);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+}
+
+.github-profile-link:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.github-calendar-scroll-wrapper {
+    overflow-x: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.75rem 0;
+}
+
+.github-calendar-scroll-wrapper svg,
+.github-calendar-scroll-wrapper img.github-svg-graph {
+    width: 100%;
+    min-width: 820px;
+    height: auto;
+    display: block;
+}
+
+.github-calendar-scroll-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.github-calendar-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(76, 224, 210, 0.3);
+    border-radius: 3px;
 }
 
 .contact-details-container {
@@ -199,4 +299,37 @@
 .contact-cta-btn:focus-visible {
     outline: 2px solid var(--accent-signal);
     outline-offset: 4px;
+}
+
+/* Giant Bottom Footer Wordmark */
+.footer-big-name-wrapper {
+    width: 100%;
+    margin-top: 3rem;
+    padding-top: 0;
+    user-select: none;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: hidden;
+    height: 10.5vw;
+    min-height: 80px;
+    max-height: 160px;
+    position: relative;
+}
+
+.footer-big-name-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    transform: translateY(0);
+}
+
+.footer-big-name-text {
+    font-family: var(--font-display);
+    font-weight: 900;
+    text-transform: uppercase;
+    fill: url(#footerNameGradient);
+    letter-spacing: -0.01em;
+    font-size: 140px;
 }
