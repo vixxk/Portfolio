@@ -59,7 +59,7 @@ export const WORK_EXPERIENCE_ITEMS = [
     image: mingoLanding,
     logo: mingoLogo,
     stack: ["React Native", "Expo", "Node.js", "Express", "MongoDB", "ZEGOCloud", "Socket.IO"],
-    links: { github: "https://github.com/vixxk/Mingo", live: "https://github.com/vixxk/Mingo" },
+    links: { github: "https://github.com/vixxk/Mingo", live: "https://play.google.com/store/apps/details?id=com.talkmingo.app" },
     points: [
       "Developed multi-engine real-time calling using ZEGOCloud and Agora RTC SDKs with state-driven session management.",
       "Engineered anonymous peer matching backed by Redis caching, OneSignal push notifications, and account deletion governance."

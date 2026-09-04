@@ -270,7 +270,7 @@ export function HeroCarousel({
                     rel="noopener noreferrer"
                     className="hero-action-btn primary"
                   >
-                    Live Demo <ArrowUpRight size={15} />
+                    Live <ArrowUpRight size={15} />
                   </a>
                 ) : (
                   <span className="hero-action-btn disabled">Live Disabled</span>
