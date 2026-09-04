@@ -169,15 +169,33 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 0.75rem 0;
+    padding: 0.25rem 0 0 0;
 }
 
-.github-calendar-scroll-wrapper svg,
+.github-calendar-scroll-wrapper .react-activity-calendar {
+    width: 100% !important;
+}
+
+.github-calendar-scroll-wrapper svg.react-activity-calendar__calendar,
 .github-calendar-scroll-wrapper img.github-svg-graph {
     width: 100%;
     min-width: 820px;
     height: auto;
     display: block;
+}
+
+.github-calendar-scroll-wrapper .react-activity-calendar__footer {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+}
+
+.github-calendar-scroll-wrapper .react-activity-calendar__footer svg {
+    width: 13px !important;
+    min-width: 13px !important;
+    height: 13px !important;
+    display: inline-block !important;
 }
 
 .github-calendar-scroll-wrapper::-webkit-scrollbar {

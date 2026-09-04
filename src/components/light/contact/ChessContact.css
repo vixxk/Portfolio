@@ -195,15 +195,34 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 0.75rem 0;
+    padding: 0.25rem 0 0 0;
 }
 
-.chess-heatmap-scroll svg,
+.chess-heatmap-scroll .react-activity-calendar {
+    width: 100% !important;
+}
+
+.chess-heatmap-scroll svg.react-activity-calendar__calendar,
 .chess-heatmap-scroll img.github-svg-graph {
     width: 100%;
     min-width: 820px;
     height: auto;
     display: block;
+}
+
+.chess-heatmap-scroll .react-activity-calendar__footer {
+    font-family: 'Space Grotesk', monospace;
+    font-size: 0.8rem;
+    color: #52525b;
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+.chess-heatmap-scroll .react-activity-calendar__footer svg {
+    width: 13px !important;
+    min-width: 13px !important;
+    height: 13px !important;
+    display: inline-block !important;
 }
 
 /* Force empty (0-score) squares in SVG fallback graph to pop with clear grey contrast */
