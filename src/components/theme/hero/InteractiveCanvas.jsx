@@ -68,9 +68,9 @@ export const InteractiveCanvas = ({ isResolved }) => {
             const currentHeight = canvas.height / window.devicePixelRatio;
             const currentIsMobile = window.innerWidth < 768;
 
-            // Keep target node floating cleanly in top-right quadrant
-            targetNode.x = currentIsMobile ? currentWidth * 0.78 : currentWidth * 0.76;
-            targetNode.y = currentIsMobile ? currentHeight * 0.22 : currentHeight * 0.28;
+            // Keep target node floating cleanly above Available for Opportunities badge on mobile
+            targetNode.x = currentIsMobile ? currentWidth * 0.52 : currentWidth * 0.76;
+            targetNode.y = currentIsMobile ? currentHeight * 0.12 : currentHeight * 0.28;
 
             // Draw particles and update them
             particles.forEach((p) => {
@@ -129,7 +129,8 @@ export const InteractiveCanvas = ({ isResolved }) => {
 
                 ctx.font = '10px JetBrains Mono, monospace';
                 ctx.fillStyle = '#8B7FFF';
-                ctx.fillText('// query_resolved: vivek_anand.vector', targetNode.x + 12, targetNode.y + 4);
+                const labelText = currentIsMobile ? '// query_resolved' : '// query_resolved: vivek_anand.vector';
+                ctx.fillText(labelText, targetNode.x + 10, targetNode.y + 4);
 
                 // Connect to mouse if close
                 if (mouseRef.current.x !== null) {

@@ -133,6 +133,15 @@ export const ChessNavbar = () => {
                                     {link.name}
                                 </Link>
                             ))}
+                            <a
+                                href={personalInfo.resumeLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="chess-btn-outline text-lg px-8 py-3 mt-2"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                Notation (CV)
+                            </a>
                         </div>
                     </motion.div>
                 )}

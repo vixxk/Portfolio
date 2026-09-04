@@ -24,7 +24,7 @@ export const Projects = () => {
 
                 <div className="projects-grid">
                     {projects.map((project, index) => (
-                        <ProjectCard key={index} project={project} index={index} />
+                        <ProjectCard key={index} project={project} index={index} totalProjects={projects.length} />
                     ))}
                 </div>
             </div>

@@ -1,8 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { GitHubCalendar } from 'react-github-calendar';
 
 export const GitHubHeatmap = ({ username = "vixxk", theme = "dark" }) => {
     const [hasError, setHasError] = useState(false);
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        const el = containerRef.current;
+        if (!el) return;
+
+        const scrollToRight = () => {
+            if (el) {
+                el.scrollLeft = 99999;
+            }
+        };
+
+        scrollToRight();
+        const timers = [50, 150, 300, 600, 1000, 2000].map(ms => setTimeout(scrollToRight, ms));
+
+        const observer = new MutationObserver(() => {
+            scrollToRight();
+        });
+
+        observer.observe(el, { childList: true, subtree: true, attributes: true, characterData: true });
+
+        return () => {
+            timers.forEach(clearTimeout);
+            observer.disconnect();
+        };
+    }, [hasError]);
 
     const darkGithubTheme = {
         light: ['#121a2e', '#044e46', '#028476', '#14b8a6', '#4ce0d2'],
@@ -21,19 +47,22 @@ export const GitHubHeatmap = ({ username = "vixxk", theme = "dark" }) => {
 
     if (hasError) {
         return (
-            <div className={isChess ? "chess-heatmap-scroll" : "github-calendar-scroll-wrapper"}>
+            <div ref={containerRef} className={isChess ? "chess-heatmap-scroll" : "github-calendar-scroll-wrapper"}>
                 <img 
                     src={svgUrl} 
                     alt={`${username}'s GitHub contribution graph`} 
                     className="github-svg-graph" 
                     loading="lazy"
+                    onLoad={() => {
+                        if (containerRef.current) containerRef.current.scrollLeft = 99999;
+                    }}
                 />
             </div>
         );
     }
 
     return (
-        <div className={isChess ? "chess-heatmap-scroll" : "github-calendar-scroll-wrapper"}>
+        <div ref={containerRef} className={isChess ? "chess-heatmap-scroll" : "github-calendar-scroll-wrapper"}>
             <GitHubCalendar 
                 username={username}
                 colorScheme={isChess ? "light" : "dark"}
@@ -45,6 +74,11 @@ export const GitHubHeatmap = ({ username = "vixxk", theme = "dark" }) => {
                     if (!data || data.length === 0) {
                         setHasError(true);
                     }
+                    setTimeout(() => {
+                        if (containerRef.current) {
+                            containerRef.current.scrollLeft = 99999;
+                        }
+                    }, 50);
                     return data;
                 }}
                 throwOnError={false}

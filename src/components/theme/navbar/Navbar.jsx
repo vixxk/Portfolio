@@ -117,6 +117,15 @@ export const Navbar = () => {
                                 {link.name}
                             </Link>
                         ))}
+                        <a
+                            href={personalInfo.resumeLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-outline mobile-resume-btn"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            Resume
+                        </a>
                     </motion.div>
                 )}
             </AnimatePresence>

@@ -1,4 +1,7 @@
 import { Code2, Globe, Database, Server, Layout, Cpu } from 'lucide-react';
+import skinifyImg from '../assets/Skinify.png';
+import hushhhhhImg from '../assets/HUSHHHH.png';
+import knowChainImg from '../assets/KnowChain.png';
 
 export const resumeData = {
   personalInfo: {
@@ -89,8 +92,11 @@ export const resumeData = {
   projects: [
     {
       title: "SKINIFY – AI-Powered Frontend Website Cloner",
+      image: skinifyImg,
+      tagline: "25+ stars on GitHub repo",
       stack: ["React.js", "Node.js", "Express", "Gemini AI", "Puppeteer", "Shell Automation"],
       date: "Aug 2025",
+      tags: ["#GenerativeAI", "#Puppeteer", "#WebScraping", "#React"],
       points: [
         "Created an AI-powered frontend cloning system that downloads complete website assets (HTML, CSS, JS, images) and packages them into a unified ZIP for rapid local deployment.",
         "Integrated Gemini AI for keyword-to-URL resolution (94% accuracy) and automated setup via open.sh/open.bat, reducing user onboarding friction by 70%."
@@ -101,9 +107,29 @@ export const resumeData = {
       }
     },
     {
+      title: "KNOWCHAIN AI – Private RAG Intelligence Workspace",
+      image: knowChainImg,
+      tagline: "Evals-supported production grade solution",
+      stack: ["FastAPI", "Python", "LangGraph", "Qdrant", "Ragas", "LangSmith", "React.js", "Tailwind CSS"],
+      date: "Sep 2025",
+      tags: ["#RAG", "#FastAPI", "#LangGraph", "#Qdrant", "#LangSmith", "#NeMo"],
+      points: [
+        "Architected production RAG system with FastAPI and stateful LangGraph workflows, achieving RAGAS relevancy score of 0.95 and faithfulness of 0.94 across multi-source neural feeds.",
+        "Built low-latency hybrid retrieval combining Qdrant vector search, BM25 keyword search and Qwen3-Reranker, achieving 312ms p95 pipeline latency over 1000+ document chunks.",
+        "Integrated real-time observability using LangSmith and guardrails via NeMo, eliminating AI hallucinations through context-grounded responses, security filters and execution telemetry."
+      ],
+      links: {
+          github: "https://github.com/vixxk/KnowChain",
+          live: "https://knowchain-zg3z.onrender.com/"
+      }
+    },
+    {
       title: "HUSHHHHH... – Real-Time Anonymous Chat Application",
+      image: hushhhhhImg,
+      tagline: "Nothing saved, privacy is topmost priority",
       stack: ["React.js", "Node.js", "Express", "Socket.IO", "Prisma", "PostgreSQL", "Cloudinary", "Tailwind CSS"],
       date: "Nov 2025",
+      tags: ["#SocketIO", "#RealTime", "#Prisma", "#PostgreSQL"],
       points: [
         "Built a full-stack real-time chat platform with instant messaging, file sharing, typing indicators and zero-auth public/private rooms.",
         "Designed a scalable Express + Socket.IO backend with Prisma ORM, PostgreSQL, Cloudinary media uploads, session persistence via localStorage and automatic room cleanup after 30 minutes of activity."
@@ -111,19 +137,6 @@ export const resumeData = {
        links: {
           github: "https://github.com/vixxk/HUSHHHHH...", 
           live: "https://hushhhhh.onrender.com/"
-      }
-    },
-    {
-      title: "KNOWCHAIN – RAG Playground",
-      stack: ["React.js", "Node.js", "Express", "LangChain", "Qdrant DB", "Ragas", "LangSmith", "Gemini API", "Puppeteer"],
-      date: "Jun 2025",
-      points: [
-        "Engineered a Retrieval-Augmented Generation (RAG) playground with Ragas evaluation suite for benchmarking retrieval quality and LangSmith for real-time telemetry & cloud tracing.",
-        "Implemented LangChain pipelines with automatic chunking, Qdrant vector storage, and an Express-based backend using Puppeteer for scraping, uploads, and on-demand vector generation."
-      ],
-      links: {
-          github: "https://github.com/vixxk/KnowChain",
-          live: "https://knowchain-zg3z.onrender.com/"
       }
     }
   ],

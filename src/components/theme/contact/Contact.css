@@ -167,8 +167,7 @@
 .github-calendar-scroll-wrapper {
     overflow-x: auto;
     width: 100%;
-    display: flex;
-    justify-content: center;
+    display: block;
     padding: 0.25rem 0 0 0;
 }
 
@@ -350,4 +349,22 @@
     fill: url(#footerNameGradient);
     letter-spacing: -0.01em;
     font-size: 140px;
+}
+
+@media (max-width: 768px) {
+    .footer-big-name-wrapper {
+        margin-top: 1.5rem;
+        overflow: hidden;
+        height: 8vw;
+        min-height: 0;
+        max-height: none;
+        align-items: flex-start;
+    }
+
+    .footer-big-name-svg {
+        width: 100%;
+        height: auto;
+        transform: translateY(0);
+        margin-bottom: 0;
+    }
 }

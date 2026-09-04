@@ -62,7 +62,12 @@ export function HeroCarousel({
     return () => ro.disconnect();
   }, []);
 
-  const fullH = clamp(box.h * CARD_H, 110, 360);
+  const isMobile = box.w > 0 && box.w <= 768;
+  const cardHRatio = isMobile ? 0.14 : CARD_H;
+  const minCardH = isMobile ? 80 : 110;
+  const maxCardH = isMobile ? 115 : 360;
+
+  const fullH = clamp(box.h * cardHRatio, minCardH, maxCardH);
   const halfH = fullH / 2;
   const cardW = fullH * CARD_AR;
   const gap = Math.max(8, Math.round(cardW * GAP));
@@ -180,8 +185,8 @@ export function HeroCarousel({
             aria-hidden
             draggable={false}
             className="hero-backdrop-img"
-            initial={{ scale: reduced ? 1.22 : 1.35 }}
-            animate={{ scale: 1.22 }}
+            initial={{ scale: reduced ? 1.0 : 1.12 }}
+            animate={{ scale: 1.05 }}
             transition={reduced ? { duration: 0 } : { duration: 6, ease: "linear" }}
           />
           {theme !== "chess" && (

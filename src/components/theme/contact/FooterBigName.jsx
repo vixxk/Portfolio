@@ -17,9 +17,9 @@ export const FooterBigName = ({ name = "VIVEK ANAND" }) => {
             >
                 <defs>
                     <linearGradient id="footerNameGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#4CE0D2" stopOpacity="0.45" />
-                        <stop offset="50%" stopColor="#8B7FFF" stopOpacity="0.35" />
-                        <stop offset="100%" stopColor="#4CE0D2" stopOpacity="0.45" />
+                        <stop offset="0%" stopColor="#4CE0D2" stopOpacity="0.3" />
+                        <stop offset="50%" stopColor="#8B7FFF" stopOpacity="0.2" />
+                        <stop offset="100%" stopColor="#4CE0D2" stopOpacity="0.3" />
                     </linearGradient>
                 </defs>
                 <text

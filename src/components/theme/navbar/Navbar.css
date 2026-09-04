@@ -149,6 +149,15 @@
     color: var(--accent-signal);
 }
 
+.mobile-resume-btn {
+    margin-top: 0.75rem;
+    padding: 0.7rem 2.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    min-width: 160px;
+}
+
 .chess-theme-toggle {
     width: 36px;
     height: 36px;
