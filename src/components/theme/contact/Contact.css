@@ -351,6 +351,44 @@
     font-size: 140px;
 }
 
+/* --- Wordmark reveal: hollow outline sweeps in, then fills from inside.
+	Animation is driven from JS (rAF attribute animation) because CSS
+	transforms on clipPath children resolve their origin against the SVG
+	viewport, which slices neighboring glyphs. --- */
+
+/* Hollow letter: transparent fill, gradient stroke (the "borders") */
+.fbn-stroke-text {
+    fill: transparent;
+    stroke: url(#footerNameGradient);
+    stroke-width: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fbn-stroke-text {
+        stroke-width: 0;
+    }
+}
+
+.fbn-fill-text {
+    stroke: none;
+}
+
+/* Glow layer: brighter dedicated gradient + blurred halo.
+   NOTE: no `opacity` rule here — the JS animation drives the SVG opacity
+   attribute per frame, and a CSS opacity property would override it. */
+.fbn-glow-text {
+    fill: url(#footerGlowGradient);
+    stroke: none;
+    filter: blur(6px);
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fbn-glow-text {
+        filter: none;
+    }
+}
+
 @media (max-width: 768px) {
     .footer-big-name-wrapper {
         margin-top: 1.5rem;

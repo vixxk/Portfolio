@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useScroll, useTransform } from 'framer-motion';
 import { Github, ExternalLink, Code2, Globe, Star, ShieldCheck } from 'lucide-react';
 
 const LangSmithIcon = ({ size = 20, className = "" }) => (
@@ -35,12 +35,40 @@ export const ProjectCard = ({ project, index, totalProjects = 3 }) => {
         offset: ["start end", "start start"]
     });
 
-    // Dynamic scale expansion: Card 1 expands outward as scroll approaches sticky overlap
+    // Dynamic scale expansion as the card approaches its sticky overlap.
+    // Origin is the top edge (not center): a center-origin scale on a taller
+    // card grows downward past the shorter card covering it, breaking the
+    // full-cover effect. Top anchoring keeps the deck's top edge aligned.
     const cardScale = useTransform(
-        scrollYProgress, 
-        [0.2, 1], 
+        scrollYProgress,
+        [0.2, 1],
         [0.97, 1 + (totalProjects - 1 - index) * 0.025]
     );
+
+    // Dim while the NEXT card slides over this one, so its edges recede as
+    // it gets covered. Uses a brightness filter (not opacity) because the
+    // entry animation already owns the card's opacity. Measured directly
+    // from the next card's bounding rect (its DOM sibling).
+    const dimBrightness = useMotionValue(1);
+    useLayoutEffect(() => {
+        const update = () => {
+            const next = cardRef.current?.nextElementSibling;
+            if (!next) return;
+            const rect = next.getBoundingClientRect();
+            const vh = window.innerHeight;
+            // 0 = next card still below the fold, 1 = fully stacked at top
+            const p = Math.min(1, Math.max(0, (vh - rect.top) / (vh - 185)));
+            dimBrightness.set(1 - p * 0.5); // 1 → 0.5 brightness
+        };
+        update();
+        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+        return () => {
+            window.removeEventListener('scroll', update);
+            window.removeEventListener('resize', update);
+        };
+    }, [dimBrightness]);
+    const dimFilter = useTransform(dimBrightness, (b) => `brightness(${b})`);
 
     const handleMouseEnter = () => {
         if (window.innerWidth > 900) {
@@ -57,12 +85,14 @@ export const ProjectCard = ({ project, index, totalProjects = 3 }) => {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: index * 0.12, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 className="featured-project-card"
-                style={{ 
+                style={{
                     '--card-index': index,
                     top: `${stickyTop}px`,
                     zIndex: index + 1,
                     width: cardWidth,
                     scale: cardScale,
+                    transformOrigin: '50% 0%',
+                    filter: dimFilter,
                     margin: '0 auto'
                 }}
             >

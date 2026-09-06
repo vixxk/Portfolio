@@ -1,6 +1,8 @@
 .projects-section {
     position: relative;
-    padding: 4rem 0 80vh 0;
+    /* bottom padding kept small: the grid's own padding provides the sticky
+       runway so the last card can fully land and the deck stays pinned */
+    padding: 4rem 0 45vh 0;
 }
 
 .projects-section .container {
@@ -26,6 +28,10 @@
     gap: 45vh;
     margin-top: 1.5rem;
     width: 100%;
+    /* Sticky containment runway: without this, the grid's bottom edge (the
+       last card's slot) clips the sticky cards and pushes the previous card
+       above the incoming one before it can fully cover it. */
+    padding-bottom: 45vh;
 }
 
 /* Featured Project Card Component - Edge-to-Edge Flush Preview Media */
@@ -352,6 +358,7 @@
     .projects-grid {
         gap: 12vh;
         margin-top: 0.5rem;
+        padding-bottom: 15vh;
     }
 
     .featured-project-card {
