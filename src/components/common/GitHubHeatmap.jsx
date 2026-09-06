@@ -10,23 +10,42 @@ export const GitHubHeatmap = ({ username = "vixxk", theme = "dark" }) => {
         if (!el) return;
 
         const scrollToRight = () => {
-            if (el) {
-                el.scrollLeft = 99999;
-            }
+            if (!el) return;
+            el.scrollLeft = el.scrollWidth;
+            const scrollables = el.querySelectorAll('.react-activity-calendar__scroll-container, .react-activity-calendar, article, div');
+            scrollables.forEach((node) => {
+                node.scrollLeft = node.scrollWidth;
+            });
         };
 
-        scrollToRight();
-        const timers = [50, 150, 300, 600, 1000, 2000].map(ms => setTimeout(scrollToRight, ms));
+        const executeScroll = () => {
+            scrollToRight();
+            requestAnimationFrame(scrollToRight);
+        };
+
+        executeScroll();
+        const timers = [50, 100, 200, 400, 700, 1200, 2000, 3000].map(ms => setTimeout(executeScroll, ms));
 
         const observer = new MutationObserver(() => {
-            scrollToRight();
+            executeScroll();
+            const inner = el.querySelector('.react-activity-calendar__scroll-container');
+            if (inner && !inner._observed) {
+                inner._observed = true;
+                resizeObserver.observe(inner);
+            }
         });
 
-        observer.observe(el, { childList: true, subtree: true, attributes: true, characterData: true });
+        observer.observe(el, { childList: true, subtree: true, attributes: true });
+
+        const resizeObserver = new ResizeObserver(() => {
+            executeScroll();
+        });
+        resizeObserver.observe(el);
 
         return () => {
             timers.forEach(clearTimeout);
             observer.disconnect();
+            resizeObserver.disconnect();
         };
     }, [hasError]);
 
@@ -74,11 +93,17 @@ export const GitHubHeatmap = ({ username = "vixxk", theme = "dark" }) => {
                     if (!data || data.length === 0) {
                         setHasError(true);
                     }
-                    setTimeout(() => {
-                        if (containerRef.current) {
-                            containerRef.current.scrollLeft = 99999;
-                        }
-                    }, 50);
+                    [50, 100, 200, 400, 800, 1500].forEach((delay) => {
+                        setTimeout(() => {
+                            if (containerRef.current) {
+                                containerRef.current.scrollLeft = 99999;
+                                const inners = containerRef.current.querySelectorAll('.react-activity-calendar__scroll-container, .react-activity-calendar, article, div');
+                                inners.forEach((c) => {
+                                    c.scrollLeft = c.scrollWidth;
+                                });
+                            }
+                        }, delay);
+                    });
                     return data;
                 }}
                 throwOnError={false}
@@ -88,6 +113,9 @@ export const GitHubHeatmap = ({ username = "vixxk", theme = "dark" }) => {
                         alt={`${username}'s GitHub contribution graph`} 
                         className="github-svg-graph" 
                         loading="lazy"
+                        onLoad={() => {
+                            if (containerRef.current) containerRef.current.scrollLeft = 99999;
+                        }}
                     />
                 }
             />

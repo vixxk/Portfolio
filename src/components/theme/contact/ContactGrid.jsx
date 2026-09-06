@@ -12,9 +12,17 @@ export const ContactGrid = ({ personalInfo }) => {
                 className="section-header"
             >
                 <span className="section-eyebrow">// retrieve_contact</span>
-                <h2 className="text-3xl font-display font-bold">
-                    Get in <span className="text-gradient">Touch</span>
-                </h2>
+                <div className="contact-heading-row">
+                    <h2 className="text-3xl font-display font-bold">
+                        Get in <span className="text-gradient">Touch</span>
+                    </h2>
+                    <a 
+                        href={`mailto:${personalInfo.email}`} 
+                        className="btn contact-cta-btn contact-cta-mobile"
+                    >
+                        INITIATE_CONNECTION <ExternalLink size={10} />
+                    </a>
+                </div>
                 <div className="section-line"></div>
             </motion.div>
 
@@ -47,7 +55,7 @@ export const ContactGrid = ({ personalInfo }) => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
-                    className="contact-cta-wrapper"
+                    className="contact-cta-wrapper contact-cta-desktop"
                 >
                     <a 
                         href={`mailto:${personalInfo.email}`} 

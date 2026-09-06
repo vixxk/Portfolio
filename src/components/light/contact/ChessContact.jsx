@@ -13,6 +13,10 @@ export const ChessContact = () => {
             <div className="chess-bg-grid"></div>
 
             <div className="chess-contact-container">
+                {/* Stats Row & GitHub Contribution Activity */}
+                <ChessStatsGrid personalInfo={personalInfo} />
+
+                {/* Contact Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -50,9 +54,6 @@ export const ChessContact = () => {
                         </div>
                     </div>
                 </div>
-
-                {/* Stats Row */}
-                <ChessStatsGrid personalInfo={personalInfo} />
 
                 {/* Footer State */}
                 <div className="chess-footer-state">

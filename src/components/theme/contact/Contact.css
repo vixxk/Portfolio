@@ -175,6 +175,12 @@
     width: 100% !important;
 }
 
+.github-calendar-scroll-wrapper .react-activity-calendar__scroll-container {
+    overflow-x: auto !important;
+    scroll-behavior: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 .github-calendar-scroll-wrapper svg.react-activity-calendar__calendar,
 .github-calendar-scroll-wrapper img.github-svg-graph {
     width: 100%;
@@ -281,6 +287,14 @@
     justify-content: flex-start;
 }
 
+.contact-cta-mobile {
+    display: none !important;
+}
+
+.contact-cta-desktop {
+    display: flex;
+}
+
 @media (min-width: 768px) {
     .contact-cta-wrapper {
         justify-content: flex-end;
@@ -321,17 +335,19 @@
 /* Giant Bottom Footer Wordmark */
 .footer-big-name-wrapper {
     width: 100%;
-    margin-top: 3rem;
+    margin-top: 4rem;
     padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
     user-select: none;
     pointer-events: none;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     overflow: hidden;
-    height: 10.5vw;
-    min-height: 80px;
-    max-height: 160px;
+    height: 8.8vw;
+    min-height: 78px;
+    max-height: 150px;
     position: relative;
 }
 
@@ -390,17 +406,72 @@
 }
 
 @media (max-width: 768px) {
+    .contact-cta-desktop {
+        display: none !important;
+    }
+
+    .contact-heading-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+        flex-wrap: nowrap;
+    }
+
+    .contact-heading-row h2 {
+        font-size: 1.55rem !important;
+        margin: 0;
+        white-space: nowrap;
+    }
+
+    .contact-cta-mobile {
+        display: inline-flex !important;
+        font-family: var(--font-mono);
+        text-transform: uppercase;
+        font-size: 0.56rem;
+        letter-spacing: 0.03em;
+        background-color: var(--accent-signal);
+        color: var(--bg) !important;
+        border: 1px solid var(--accent-signal);
+        border-radius: 4px;
+        padding: 0.25rem 0.5rem;
+        font-weight: 700;
+        align-items: center;
+        gap: 0.25rem;
+        white-space: nowrap;
+        box-shadow: 0 2px 8px rgba(76, 224, 210, 0.2);
+        flex-shrink: 0;
+    }
+
+    .contact-cta-mobile:hover {
+        background-color: rgba(76, 224, 210, 0.05);
+        color: var(--accent-signal) !important;
+    }
+
+    .contact-content-grid {
+        gap: 1.5rem;
+        margin-top: 1.25rem;
+    }
+
     .footer-big-name-wrapper {
-        margin-top: 1.5rem;
+        margin-top: 2rem;
         overflow: hidden;
-        height: 8vw;
+        height: 11.5vw;
         min-height: 0;
         max-height: none;
+        display: flex;
+        justify-content: center;
         align-items: flex-start;
+        padding-bottom: 0;
+        margin-bottom: 0;
     }
 
     .footer-big-name-svg {
-        width: 100%;
+        width: 125% !important;
+        max-width: 125% !important;
+        min-width: 125% !important;
+        flex-shrink: 0;
         height: auto;
         transform: translateY(0);
         margin-bottom: 0;

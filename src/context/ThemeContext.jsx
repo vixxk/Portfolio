@@ -4,7 +4,7 @@ const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState(() => {
-        return localStorage.getItem('portfolio-theme') || 'default';
+        return localStorage.getItem('portfolio-theme') || 'chess';
     });
 
     useEffect(() => {

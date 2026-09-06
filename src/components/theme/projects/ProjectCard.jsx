@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { motion, useMotionValue, useScroll, useTransform } from 'framer-motion';
 import { Github, ExternalLink, Code2, Globe, Star, ShieldCheck } from 'lucide-react';
 
-const LangSmithIcon = ({ size = 20, className = "" }) => (
+const LangSmithIcon = ({ size = 28, className = "" }) => (
     <svg 
         width={size} 
         height={size} 
@@ -19,7 +19,6 @@ const LangSmithIcon = ({ size = 20, className = "" }) => (
 export const ProjectCard = ({ project, index, totalProjects = 3 }) => {
     const cardRef = useRef(null);
     const [isZoomed, setIsZoomed] = useState(false);
-    const formattedIndex = String(index + 1).padStart(2, '0');
     const projectDate = project.date || '2025';
 
     // All cards share the same sticky top so each fully covers the previous one
@@ -36,13 +35,11 @@ export const ProjectCard = ({ project, index, totalProjects = 3 }) => {
     });
 
     // Dynamic scale expansion as the card approaches its sticky overlap.
-    // Origin is the top edge (not center): a center-origin scale on a taller
-    // card grows downward past the shorter card covering it, breaking the
-    // full-cover effect. Top anchoring keeps the deck's top edge aligned.
+    // All cards reach scale 1.0 when fully landed so cards stack flush without peeking.
     const cardScale = useTransform(
         scrollYProgress,
         [0.2, 1],
-        [0.97, 1 + (totalProjects - 1 - index) * 0.025]
+        [0.98, 1]
     );
 
     // Dim while the NEXT card slides over this one, so its edges recede as
@@ -70,10 +67,29 @@ export const ProjectCard = ({ project, index, totalProjects = 3 }) => {
     }, [dimBrightness]);
     const dimFilter = useTransform(dimBrightness, (b) => `brightness(${b})`);
 
+    const mouseTimeoutRef = useRef(null);
+
     const handleMouseEnter = () => {
         if (window.innerWidth > 900) {
+            if (mouseTimeoutRef.current) clearTimeout(mouseTimeoutRef.current);
             setIsZoomed(true);
         }
+    };
+
+    const handleMouseLeave = () => {
+        mouseTimeoutRef.current = setTimeout(() => {
+            setIsZoomed(false);
+        }, 50);
+    };
+
+    const handleImageMouseEnter = () => {
+        if (mouseTimeoutRef.current) clearTimeout(mouseTimeoutRef.current);
+        setIsZoomed(true);
+    };
+
+    const handleImageMouseLeave = () => {
+        if (mouseTimeoutRef.current) clearTimeout(mouseTimeoutRef.current);
+        setIsZoomed(false);
     };
 
     return (
@@ -100,7 +116,7 @@ export const ProjectCard = ({ project, index, totalProjects = 3 }) => {
                 <div 
                     className="project-preview-container"
                     onMouseEnter={handleMouseEnter}
-                    onMouseLeave={() => setIsZoomed(false)}
+                    onMouseLeave={handleMouseLeave}
                 >
                     {/* Year Pill Badge */}
                     <div className="project-index-badge">
@@ -136,7 +152,7 @@ export const ProjectCard = ({ project, index, totalProjects = 3 }) => {
                             </>
                         ) : project.title.toLowerCase().includes('knowchain') ? (
                             <>
-                                <LangSmithIcon size={20} />
+                                <LangSmithIcon size={28} />
                                 <span>{project.tagline}</span>
                             </>
                         ) : (
@@ -223,9 +239,38 @@ export const ProjectCard = ({ project, index, totalProjects = 3 }) => {
         </motion.div>
 
         {isZoomed && project.image && createPortal(
-            <div className="image-zoom-overlay">
-                <div className="image-zoom-content">
-                    <img src={project.image} alt={project.title} className="zoomed-image" />
+            <div 
+                className="image-zoom-overlay"
+                onMouseMove={(e) => {
+                    if (e.target.classList.contains('image-zoom-overlay')) {
+                        setIsZoomed(false);
+                    }
+                }}
+                onClick={(e) => {
+                    if (e.target.classList.contains('image-zoom-overlay')) {
+                        setIsZoomed(false);
+                    }
+                }}
+            >
+                <div 
+                    className="image-zoom-content"
+                    onMouseEnter={handleImageMouseEnter}
+                    onMouseLeave={handleImageMouseLeave}
+                >
+                    <a 
+                        href={project.links?.live || '#'} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="zoomed-image-link"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            if (project.links?.live) {
+                                window.open(project.links.live, '_blank', 'noopener,noreferrer');
+                            }
+                        }}
+                    >
+                        <img src={project.image} alt={project.title} className="zoomed-image" />
+                    </a>
                 </div>
             </div>,
             document.body

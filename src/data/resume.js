@@ -126,7 +126,7 @@ export const resumeData = {
     {
       title: "HUSHHHHH... – Real-Time Anonymous Chat Application",
       image: hushhhhhImg,
-      tagline: "Nothing saved, privacy is topmost priority",
+      tagline: "Privacy-first anonymous messaging platform",
       stack: ["React.js", "Node.js", "Express", "Socket.IO", "Prisma", "PostgreSQL", "Cloudinary", "Tailwind CSS"],
       date: "Nov 2025",
       tags: ["#SocketIO", "#RealTime", "#Prisma", "#PostgreSQL"],

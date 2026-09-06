@@ -219,6 +219,32 @@ export const FooterBigName = ({ name = 'VIVEK ANAND' }) => {
                         <stop offset="50%" stopColor="#8B7FFF" />
                         <stop offset="100%" stopColor="#4CE0D2" />
                     </linearGradient>
+
+                    {/* Light theme (Chess) bold dark gradients */}
+                    <linearGradient
+                        id="chessFooterGradient"
+                        gradientUnits="userSpaceOnUse"
+                        x1="0"
+                        y1="0"
+                        x2="1200"
+                        y2="0"
+                    >
+                        <stop offset="0%" stopColor="#09090b" stopOpacity="0.88" />
+                        <stop offset="50%" stopColor="#27272a" stopOpacity="0.95" />
+                        <stop offset="100%" stopColor="#09090b" stopOpacity="0.88" />
+                    </linearGradient>
+                    <linearGradient
+                        id="chessGlowGradient"
+                        gradientUnits="userSpaceOnUse"
+                        x1="0"
+                        y1="0"
+                        x2="1200"
+                        y2="0"
+                    >
+                        <stop offset="0%" stopColor="#000000" />
+                        <stop offset="50%" stopColor="#3f3f46" />
+                        <stop offset="100%" stopColor="#000000" />
+                    </linearGradient>
                 </defs>
 
                 {/* Base text: measurement source + static fallback. Hidden

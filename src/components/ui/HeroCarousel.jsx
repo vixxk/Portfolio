@@ -30,6 +30,7 @@ export function HeroCarousel({
   autoplay = false,
   autoplayDelay = 5000,
   theme = "default",
+  header,
   className
 }) {
   const stageRef = useRef(null);
@@ -212,13 +213,22 @@ export function HeroCarousel({
         style={{ backgroundImage: GRAIN, backgroundSize: "180px 180px" }}
       />
 
-      {/* ── Top Bar ── */}
-      <div className="hero-top-bar">
-        <div className="hero-brand">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse inline-block" />
-          {brand}
+      {/* ── Custom Header ── */}
+      {header ? (
+        <div className="hero-custom-header">
+          {header}
         </div>
-      </div>
+      ) : null}
+
+      {/* ── Top Bar ── */}
+      {brand ? (
+        <div className="hero-top-bar">
+          <div className="hero-brand">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse inline-block" />
+            {brand}
+          </div>
+        </div>
+      ) : null}
 
       {/* ── Headline Block ── */}
       <div className="hero-headline-block">

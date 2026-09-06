@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useScroll } from 'framer-motion';
+import { useScroll, motion } from 'framer-motion';
 import { HeroCarousel } from '../../ui/HeroCarousel';
 import { WORK_EXPERIENCE_ITEMS } from '../../../data/experienceItems';
 import './ChessExperience.css';
@@ -31,8 +31,21 @@ export const ChessExperience = () => {
                     items={WORK_EXPERIENCE_ITEMS}
                     index={activeIndex}
                     onIndexChange={(idx) => setActiveIndex(idx)}
-                    brand="VIVEK ANAND // TOURNAMENT & ROLES"
+                    brand=""
                     theme="chess"
+                    header={
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="chess-experience-header"
+                        >
+                            <h2 className="chess-section-title">
+                                Tournament <span className="chess-title-highlight">History</span>
+                            </h2>
+                            <div className="chess-header-underline"></div>
+                        </motion.div>
+                    }
                 />
             </div>
         </section>

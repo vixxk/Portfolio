@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Github, ExternalLink, Code2, Globe, Trophy, Star, ShieldCheck } from 'lucide-react';
 
-const LangSmithIcon = ({ size = 20, className = "" }) => (
+const LangSmithIcon = ({ size = 28, className = "" }) => (
     <svg 
         width={size} 
         height={size} 
@@ -38,13 +38,32 @@ export const MatchCard = ({ project, index, totalProjects = 3 }) => {
     const cardScale = useTransform(
         scrollYProgress, 
         [0.2, 1], 
-        [0.97, 1 + (totalProjects - 1 - index) * 0.025]
+        [0.98, 1]
     );
+
+    const mouseTimeoutRef = useRef(null);
 
     const handleMouseEnter = () => {
         if (window.innerWidth > 900) {
+            if (mouseTimeoutRef.current) clearTimeout(mouseTimeoutRef.current);
             setIsZoomed(true);
         }
+    };
+
+    const handleMouseLeave = () => {
+        mouseTimeoutRef.current = setTimeout(() => {
+            setIsZoomed(false);
+        }, 50);
+    };
+
+    const handleImageMouseEnter = () => {
+        if (mouseTimeoutRef.current) clearTimeout(mouseTimeoutRef.current);
+        setIsZoomed(true);
+    };
+
+    const handleImageMouseLeave = () => {
+        if (mouseTimeoutRef.current) clearTimeout(mouseTimeoutRef.current);
+        setIsZoomed(false);
     };
 
     return (
@@ -69,7 +88,7 @@ export const MatchCard = ({ project, index, totalProjects = 3 }) => {
                 <div 
                     className="chess-project-preview-container"
                     onMouseEnter={handleMouseEnter}
-                    onMouseLeave={() => setIsZoomed(false)}
+                    onMouseLeave={handleMouseLeave}
                 >
                 {/* Date Badge */}
                 <div className="chess-project-index-badge">
@@ -101,7 +120,7 @@ export const MatchCard = ({ project, index, totalProjects = 3 }) => {
                             </>
                         ) : project.title.toLowerCase().includes('knowchain') ? (
                             <>
-                                <LangSmithIcon size={20} />
+                                <LangSmithIcon size={28} />
                                 <span>{project.tagline}</span>
                             </>
                         ) : (
@@ -188,9 +207,38 @@ export const MatchCard = ({ project, index, totalProjects = 3 }) => {
         </motion.div>
 
         {isZoomed && project.image && createPortal(
-            <div className="chess-image-zoom-overlay">
-                <div className="chess-image-zoom-content">
-                    <img src={project.image} alt={project.title} className="chess-zoomed-image" />
+            <div 
+                className="chess-image-zoom-overlay"
+                onMouseMove={(e) => {
+                    if (e.target.classList.contains('chess-image-zoom-overlay')) {
+                        setIsZoomed(false);
+                    }
+                }}
+                onClick={(e) => {
+                    if (e.target.classList.contains('chess-image-zoom-overlay')) {
+                        setIsZoomed(false);
+                    }
+                }}
+            >
+                <div 
+                    className="chess-image-zoom-content"
+                    onMouseEnter={handleImageMouseEnter}
+                    onMouseLeave={handleImageMouseLeave}
+                >
+                    <a 
+                        href={project.links?.live || '#'} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="chess-zoomed-image-link"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            if (project.links?.live) {
+                                window.open(project.links.live, '_blank', 'noopener,noreferrer');
+                            }
+                        }}
+                    >
+                        <img src={project.image} alt={project.title} className="chess-zoomed-image" />
+                    </a>
                 </div>
             </div>,
             document.body

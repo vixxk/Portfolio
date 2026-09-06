@@ -1,5 +1,5 @@
 .chess-section {
-    padding: 4rem 0 80vh 0;
+    padding: 4rem 0 0 0;
     position: relative;
     background: var(--chess-bg-dark, #f4f4f5);
 }
@@ -46,9 +46,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 45vh;
+    gap: 40vh;
     margin-top: 1.5rem;
     width: 100%;
+    padding-bottom: 20vh;
 }
 
 /* Chess Brutalist Match Card */
@@ -58,6 +59,7 @@
     grid-template-columns: 1.25fr 1fr;
     gap: 1.75rem;
     width: 100%;
+    min-height: var(--card-min-height, 530px);
     background: #ffffff;
     border: 3px solid #000000;
     border-radius: 0;
@@ -172,6 +174,7 @@
     gap: 1.25rem;
     padding: 1.75rem 2rem 1.75rem 0.25rem;
     background: #ffffff;
+    height: 100%;
 }
 
 .chess-project-badges-row {
@@ -281,6 +284,7 @@
 
 .chess-project-actions-row .chess-btn-primary:hover {
     background: #222222;
+    color: #ffffff !important;
     transform: translate(-2px, -2px);
     box-shadow: 6px 6px 0px #000000;
 }
@@ -318,8 +322,9 @@
     }
 
     .chess-projects-grid {
-        gap: 12vh;
+        gap: 20vh;
         margin-top: 0.5rem;
+        padding-bottom: 45vh;
     }
 
     .chess-match-card {
@@ -328,8 +333,9 @@
         width: 100% !important;
         margin: 0 !important;
         box-shadow: 6px 6px 0px #000000;
-        top: calc(70px + var(--card-index, 0) * 12px) !important;
+        top: 70px !important;
         scale: 1 !important;
+        min-height: var(--card-min-height, auto) !important;
     }
 
     .chess-project-preview-container {
@@ -422,7 +428,8 @@
 
 @media (max-width: 480px) {
     .chess-projects-grid {
-        gap: 10vh;
+        gap: 18vh;
+        padding-bottom: 45vh;
     }
 
     .chess-project-preview-container {
@@ -465,7 +472,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none;
+    pointer-events: auto;
+    cursor: pointer;
     animation: zoomModalFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -483,7 +491,15 @@
     background: #ffffff;
     box-shadow: 16px 16px 0px #000000;
     border: 3px solid #000000;
-    pointer-events: none;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.chess-zoomed-image-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
 }
 
 .chess-zoomed-image {
@@ -493,6 +509,7 @@
     display: block;
     opacity: 1 !important;
     background: #ffffff;
+    cursor: pointer;
 }
 
 @media (max-width: 900px) {

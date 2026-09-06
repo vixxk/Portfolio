@@ -401,6 +401,29 @@
   color: #ffffff;
 }
 
+.hero-custom-header {
+  position: absolute;
+  inset-x: 0;
+  left: 0;
+  right: 0;
+  top: 4.8rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 25;
+  text-align: center;
+  pointer-events: auto;
+}
+
+.hero-carousel-container.theme-chess .hero-headline-block {
+  padding-top: 10.5rem;
+}
+
+.hero-carousel-container.theme-chess .hero-top-bar {
+  display: none !important;
+}
+
 .hero-carousel-container.theme-chess .hero-point-bullet {
   color: #ffffff;
 }
