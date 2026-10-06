@@ -21,51 +21,72 @@ export const ProjectCard = ({ project, index, totalProjects = 3 }) => {
     const [isZoomed, setIsZoomed] = useState(false);
     const projectDate = project.date || '2025';
 
-    // All cards share the same sticky top so each fully covers the previous one
+    // Sticky top position for stacking cards
     const stickyTop = 185;
 
-    // Deck breadth offset: Card 1 is broadest (100%), subsequent cards are incrementally inset
-    const widthOffset = (totalProjects - 1 - index) * 40;
-    const cardWidth = widthOffset > 0 ? `calc(100% - ${widthOffset}px)` : '100%';
+    // Track scroll-driven depth: how much subsequent cards are ascending over this card
+    const backgroundProgress = useMotionValue(0);
 
-    // Track scroll progress for dynamic scale expansion as incoming cards approach
-    const { scrollYProgress } = useScroll({
-        target: cardRef,
-        offset: ["start end", "start start"]
-    });
+    useLayoutEffect(() => {
+        let rafId = null;
 
-    // Dynamic scale expansion as the card approaches its sticky overlap.
-    // All cards reach scale 1.0 when fully landed so cards stack flush without peeking.
+        const update = () => {
+            if (!cardRef.current) return;
+            const parent = cardRef.current.parentElement;
+            if (!parent) return;
+            const allCards = Array.from(parent.querySelectorAll('.featured-project-card'));
+            const myIndex = allCards.indexOf(cardRef.current);
+            if (myIndex === -1 || myIndex === allCards.length - 1) {
+                backgroundProgress.set(0);
+                return;
+            }
+
+            const vh = window.innerHeight;
+            const currentStickyTop = window.innerWidth <= 900 ? 70 : 185;
+            let totalP = 0;
+
+            for (let j = myIndex + 1; j < allCards.length; j++) {
+                const rect = allCards[j].getBoundingClientRect();
+                // Progress of this subsequent card traveling upwards from bottom of viewport (vh) to stickyTop
+                const p = Math.min(1, Math.max(0, (vh - rect.top) / (vh - currentStickyTop)));
+                totalP += p;
+            }
+
+            backgroundProgress.set(totalP);
+        };
+
+        const onScroll = () => {
+            if (rafId) cancelAnimationFrame(rafId);
+            rafId = requestAnimationFrame(update);
+        };
+
+        update();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+
+        return () => {
+            if (rafId) cancelAnimationFrame(rafId);
+            window.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', onScroll);
+        };
+    }, [backgroundProgress]);
+
+    // As next cards come upwards, this previous card behind gets smaller, zooming out in the background
+    // P = 0: Active in foreground (scale 1.0)
+    // P = 1: Next card has landed, this card is zoomed out in the background (scale 0.90)
+    // P = 2: 2 cards stacked on top, this card recedes further (scale 0.82)
     const cardScale = useTransform(
-        scrollYProgress,
-        [0.2, 1],
-        [0.98, 1]
+        backgroundProgress,
+        [0, 1, 2],
+        [1, 0.90, 0.82]
     );
 
-    // Dim while the NEXT card slides over this one, so its edges recede as
-    // it gets covered. Uses a brightness filter (not opacity) because the
-    // entry animation already owns the card's opacity. Measured directly
-    // from the next card's bounding rect (its DOM sibling).
-    const dimBrightness = useMotionValue(1);
-    useLayoutEffect(() => {
-        const update = () => {
-            const next = cardRef.current?.nextElementSibling;
-            if (!next) return;
-            const rect = next.getBoundingClientRect();
-            const vh = window.innerHeight;
-            // 0 = next card still below the fold, 1 = fully stacked at top
-            const p = Math.min(1, Math.max(0, (vh - rect.top) / (vh - 185)));
-            dimBrightness.set(1 - p * 0.5); // 1 → 0.5 brightness
-        };
-        update();
-        window.addEventListener('scroll', update, { passive: true });
-        window.addEventListener('resize', update);
-        return () => {
-            window.removeEventListener('scroll', update);
-            window.removeEventListener('resize', update);
-        };
-    }, [dimBrightness]);
-    const dimFilter = useTransform(dimBrightness, (b) => `brightness(${b})`);
+    // Zoom-out depth styling: dimming brightness and applying subtle depth-of-field blur
+    const cardFilter = useTransform(backgroundProgress, (p) => {
+        const brightness = Math.max(0.45, 1 - p * 0.35); // 1.0 -> 0.65 -> 0.45
+        const blur = p * 1.5; // 0px -> 1.5px -> 3.0px
+        return `brightness(${brightness}) blur(${blur}px)`;
+    });
 
     const mouseTimeoutRef = useRef(null);
 
@@ -105,10 +126,10 @@ export const ProjectCard = ({ project, index, totalProjects = 3 }) => {
                     '--card-index': index,
                     top: `${stickyTop}px`,
                     zIndex: index + 1,
-                    width: cardWidth,
+                    width: '100%',
                     scale: cardScale,
                     transformOrigin: '50% 0%',
-                    filter: dimFilter,
+                    filter: cardFilter,
                     margin: '0 auto'
                 }}
             >

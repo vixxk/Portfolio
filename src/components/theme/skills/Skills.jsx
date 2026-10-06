@@ -13,10 +13,12 @@ const clustersData = {
             { name: 'TypeScript', x: 80, y: 70 }
         ],
         edges: [
-            [0, 1],
-            [1, 2],
-            [2, 3],
-            [3, 4]
+            [0, 1], // C <-> C++ (Systems programming evolution)
+            [0, 2], // C <-> Python (CPython engine & low-level internals)
+            [1, 2], // C++ <-> Python (Native extensions, CUDA & tensor acceleration)
+            [2, 3], // Python <-> JavaScript (Full-stack scripting & dynamic development)
+            [2, 4], // Python <-> TypeScript (Modern AI full-stack: Python API & TS client)
+            [3, 4]  // JavaScript <-> TypeScript (Typed superset of JavaScript)
         ]
     },
     web: {
@@ -32,16 +34,15 @@ const clustersData = {
             { name: 'FastAPI', x: 68, y: 50 }
         ],
         edges: [
-            [0, 1],
-            [0, 2],
-            [1, 2],
-            [2, 3],
-            [3, 7],
-            [5, 7],
-            [3, 5],
-            [4, 5],
-            [2, 6],
-            [5, 6]
+            [0, 1], // HTML <-> CSS (Core web markup & styling)
+            [0, 2], // HTML <-> React.js (JSX DOM rendering)
+            [1, 2], // CSS <-> React.js (Component styling)
+            [2, 3], // React.js <-> Next.js (Next.js is the React production framework)
+            [2, 6], // React.js <-> Socket.IO (Client real-time WebSocket connection)
+            [5, 6], // Node.js <-> Socket.IO (Server-side real-time engine)
+            [4, 5], // Express.js <-> Node.js (Express server running on Node.js runtime)
+            [3, 7], // Next.js <-> FastAPI (Next.js frontend consuming FastAPI backend)
+            [2, 7]  // React.js <-> FastAPI (React SPA consuming FastAPI backend)
         ]
     },
     ai: {
@@ -56,15 +57,15 @@ const clustersData = {
             { name: 'Fireworks AI', x: 22, y: 70 }
         ],
         edges: [
-            [0, 1],
-            [0, 2],
-            [0, 6],
-            [1, 3],
-            [1, 5],
-            [1, 6],
-            [2, 4],
-            [2, 6],
-            [3, 4]
+            [0, 1], // Generative AI <-> RAG (Core GenAI retrieval pattern)
+            [0, 2], // Generative AI <-> Agentic AI (Core GenAI autonomous agent pattern)
+            [0, 6], // Generative AI <-> Fireworks AI (LLM inference provider for GenAI)
+            [1, 3], // RAG <-> LangChain (LangChain builds retrieval chains & vector pipelines)
+            [1, 5], // RAG <-> Ragas (Ragas evaluates RAG pipeline accuracy & faithfulness)
+            [2, 4], // Agentic AI <-> LangGraph (LangGraph orchestrates multi-agent systems)
+            [3, 4], // LangChain <-> LangGraph (LangGraph extends LangChain for cyclical agent graphs)
+            [3, 5], // LangChain <-> Ragas (Ragas evaluates LangChain RAG pipelines & datasets)
+            [3, 6]  // LangChain <-> Fireworks AI (LangChain integrates Fireworks AI for model inference)
         ]
     },
     database: {
@@ -76,10 +77,11 @@ const clustersData = {
             { name: 'Qdrant (vector)', x: 78, y: 32 }
         ],
         edges: [
-            [1, 2],
-            [0, 2],
-            [0, 3],
-            [2, 3]
+            [0, 1], // MongoDB <-> MySQL (NoSQL Document vs SQL Relational paradigms)
+            [1, 2], // MySQL <-> PostgreSQL (Open-source Relational SQL databases)
+            [0, 2], // MongoDB <-> PostgreSQL (Primary general-purpose app databases)
+            [2, 3], // PostgreSQL <-> Qdrant (vector) (Relational metadata + Vector search in AI/RAG)
+            [0, 3]  // MongoDB <-> Qdrant (vector) (Document store + Vector search)
         ]
     },
     tools: {
@@ -96,15 +98,17 @@ const clustersData = {
             { name: 'Docker', x: 50, y: 64 }
         ],
         edges: [
-            [1, 3],
-            [2, 8],
-            [0, 8],
-            [0, 5],
-            [5, 8],
-            [3, 4],
-            [3, 6],
-            [3, 7],
-            [6, 7]
+            [1, 2], // Git <-> Linux (Git version control on Linux terminal environment)
+            [2, 3], // Linux <-> VS Code (Linux / WSL developer workstation powering VS Code)
+            [2, 8], // Linux <-> Docker (Docker containers run natively on the Linux kernel)
+            [0, 8], // AWS <-> Docker (Deploying Docker containerized apps to AWS ECS/EC2)
+            [0, 5], // AWS <-> Redis (AWS ElastiCache / cloud-managed Redis caching)
+            [5, 8], // Redis <-> Docker (Containerized Redis instance in local & production stacks)
+            [3, 8], // VS Code <-> Docker (VS Code Docker extension & Dev Containers)
+            [3, 4], // VS Code <-> Postman (Developing API endpoints in VS Code & testing with Postman)
+            [4, 8], // Postman <-> Docker (Postman testing containerized API microservices)
+            [6, 7], // Tailwind <-> ShadCN (ShadCN UI components built on Tailwind CSS)
+            [3, 6]  // VS Code <-> Tailwind (VS Code Tailwind CSS IntelliSense & styling workflow)
         ]
     }
 };
