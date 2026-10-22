@@ -35,24 +35,24 @@ export const ChessNavbar = () => {
                 animate={{ y: 0 }}
                 className={`chess-navbar ${isScrolled ? 'scrolled' : ''}`}
             >
-                <div className="container navbar-content flex items-center justify-between">
+                <div className="chess-navbar-content">
                     {/* Logo - Pawn Icon */}
                     <Link
                         to="hero"
                         smooth={true}
                         duration={500}
                         offset={-100}
-                        className="chess-logo flex items-center gap-3 group"
+                        className="chess-logo"
                     >
                         <img src="/bot icon.png" alt="bot logo" className="chess-logo-img" />
-                        <div className="flex flex-col items-start leading-none">
-                            <span className="logo-text font-black tracking-tighter text-xl uppercase">VIVEK</span>
-                            <span className="text-[10px] tracking-[0.3em] font-bold text-[var(--chess-accent-purple)]">.jsx</span>
+                        <div className="chess-logo-text-wrapper">
+                            <span className="logo-text">VIVEK</span>
+                            <span className="logo-subtext">.jsx</span>
                         </div>
                     </Link>
 
-                    {/* Desktop Links - File/Rank Style */}
-                    <div className="chess-nav-links">
+                    {/* Desktop Links - File/Rank Style - Centered */}
+                    <nav className="chess-nav-links" aria-label="Chess Navigation">
                         {chessNavLinks.map((link) => (
                             <Link
                                 key={link.name}
@@ -61,14 +61,17 @@ export const ChessNavbar = () => {
                                 smooth={true}
                                 offset={-100}
                                 duration={500}
-                                className="chess-nav-link group"
+                                className="chess-nav-link"
                                 activeClass="active"
                             >
                                 <span className="chess-notation">{link.rank}</span>
                                 <span className="chess-link-text">{link.name}</span>
-                                <span className="chess-tooltip">Move to {link.rank}</span>
                             </Link>
                         ))}
+                    </nav>
+
+                    {/* Actions - Right */}
+                    <div className="chess-nav-actions">
                         <a
                             href={personalInfo.resumeLink}
                             target="_blank"
@@ -90,15 +93,16 @@ export const ChessNavbar = () => {
                             <div className="board-square black"></div>
                             <div className="board-square white"></div>
                         </button>
-                    </div>
 
-                    {/* Mobile Toggle */}
-                    <button
-                        className="mobile-toggle text-white"
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    >
-                        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                    </button>
+                        {/* Mobile Toggle Button */}
+                        <button
+                            className="chess-mobile-toggle"
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                        >
+                            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+                        </button>
+                    </div>
                 </div>
             </motion.nav>
 

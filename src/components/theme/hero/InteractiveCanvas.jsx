@@ -52,25 +52,11 @@ export const InteractiveCanvas = ({ isResolved }) => {
             });
         }
 
-        // Special target/resolved node
-        const targetNode = {
-            x: width * 0.76,
-            y: height * 0.28,
-            radius: 5,
-            isTarget: true,
-            opacity: 1,
-            pulse: 0
-        };
-
         const render = () => {
             ctx.clearRect(0, 0, width, height);
             const currentWidth = canvas.width / window.devicePixelRatio;
             const currentHeight = canvas.height / window.devicePixelRatio;
             const currentIsMobile = window.innerWidth < 768;
-
-            // Keep target node floating cleanly above Available for Opportunities badge on mobile
-            targetNode.x = currentIsMobile ? currentWidth * 0.52 : currentWidth * 0.76;
-            targetNode.y = currentIsMobile ? currentHeight * 0.12 : currentHeight * 0.28;
 
             // Draw particles and update them
             particles.forEach((p) => {
@@ -112,42 +98,6 @@ export const InteractiveCanvas = ({ isResolved }) => {
                 ctx.fill();
             });
 
-            // Draw Target node
-            if (isResolved) {
-                targetNode.pulse += 0.03;
-                const pulseRadius = targetNode.radius + Math.sin(targetNode.pulse) * 4;
-
-                ctx.beginPath();
-                ctx.arc(targetNode.x, targetNode.y, pulseRadius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(139, 127, 255, 0.15)';
-                ctx.fill();
-
-                ctx.beginPath();
-                ctx.arc(targetNode.x, targetNode.y, targetNode.radius, 0, Math.PI * 2);
-                ctx.fillStyle = '#8B7FFF';
-                ctx.fill();
-
-                ctx.font = '10px JetBrains Mono, monospace';
-                ctx.fillStyle = '#8B7FFF';
-                const labelText = currentIsMobile ? '// query_resolved' : '// query_resolved: vivek_anand.vector';
-                ctx.fillText(labelText, targetNode.x + 10, targetNode.y + 4);
-
-                // Connect to mouse if close
-                if (mouseRef.current.x !== null) {
-                    const dx = mouseRef.current.x - targetNode.x;
-                    const dy = mouseRef.current.y - targetNode.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 220) {
-                        ctx.beginPath();
-                        ctx.moveTo(mouseRef.current.x, mouseRef.current.y);
-                        ctx.lineTo(targetNode.x, targetNode.y);
-                        ctx.strokeStyle = `rgba(139, 127, 255, ${(1 - dist / 220) * 0.4})`;
-                        ctx.lineWidth = 1.2;
-                        ctx.stroke();
-                    }
-                }
-            }
-
             // Draw connections between particles
             for (let i = 0; i < particles.length; i++) {
                 const p1 = particles[i];
@@ -170,17 +120,8 @@ export const InteractiveCanvas = ({ isResolved }) => {
                 }
             }
 
-            // Draw mouse point
+            // Draw mouse interactive connections to particles
             if (mouseRef.current.x !== null) {
-                ctx.beginPath();
-                ctx.arc(mouseRef.current.x, mouseRef.current.y, 4, 0, Math.PI * 2);
-                ctx.fillStyle = '#4CE0D2';
-                ctx.fill();
-
-                ctx.font = '10px JetBrains Mono, monospace';
-                ctx.fillStyle = '#4CE0D2';
-                ctx.fillText('// query_vector', mouseRef.current.x + 10, mouseRef.current.y - 6);
-
                 particles.forEach((p) => {
                     const dx = mouseRef.current.x - p.x;
                     const dy = mouseRef.current.y - p.y;
@@ -206,7 +147,7 @@ export const InteractiveCanvas = ({ isResolved }) => {
             window.removeEventListener('resize', resizeCanvas);
             cancelAnimationFrame(animationFrameId);
         };
-    }, [isResolved, prefersReducedMotion]);
+    }, [prefersReducedMotion]);
 
     if (prefersReducedMotion) return null;
 

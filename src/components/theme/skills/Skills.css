@@ -1,22 +1,30 @@
 .skills-section {
     position: relative;
+    padding: 6.5rem 0;
 }
 
 .section-eyebrow {
-    display: block;
+    display: inline-block;
     font-family: var(--font-mono);
     font-size: 0.75rem;
     color: var(--accent-signal);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.text-highlight {
+    color: var(--accent-signal);
+    text-shadow: 0 0 20px rgba(76, 224, 210, 0.4);
+    font-weight: 800;
 }
 
 .skills-clusters-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-top: 2rem;
+    gap: 1.75rem;
+    margin-top: 2.5rem;
 }
 
 @media (min-width: 768px) {
@@ -44,24 +52,26 @@
     font-family: var(--font-mono);
     font-size: 0.8rem;
     color: var(--text-muted);
-    letter-spacing: 0.05em;
-    margin: 0 0 0.5rem 0.25rem;
-    font-weight: 500;
+    letter-spacing: 0.08em;
+    margin: 0 0 0.65rem 0.25rem;
+    font-weight: 600;
 }
 
 .cluster-container {
     position: relative;
-    height: 280px;
+    height: 290px;
     width: 100%;
-    background-color: rgba(18, 26, 46, 0.4);
-    border: 1px dashed rgba(76, 224, 210, 0.12);
-    border-radius: 4px;
+    background-color: rgba(14, 22, 38, 0.55);
+    border: 1px solid rgba(76, 224, 210, 0.14);
+    border-radius: 10px;
     overflow: hidden;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4);
 }
 
 .cluster-container:hover {
-    border-color: rgba(76, 224, 210, 0.25);
+    border-color: rgba(76, 224, 210, 0.35);
+    box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.6), 0 0 20px rgba(76, 224, 210, 0.1);
 }
 
 .cluster-svg {
@@ -75,7 +85,7 @@
 }
 
 .cluster-edge {
-    stroke: rgba(76, 224, 210, 0.08);
+    stroke: rgba(76, 224, 210, 0.12);
     stroke-width: 1;
     transition: stroke 0.25s cubic-bezier(0.16, 1, 0.3, 1), stroke-width 0.25s ease;
 }
@@ -83,7 +93,7 @@
 .cluster-edge.active {
     stroke: var(--accent-signal);
     stroke-width: 1.5;
-    filter: drop-shadow(0 0 2px var(--accent-signal));
+    filter: drop-shadow(0 0 3px var(--accent-signal));
 }
 
 .skill-node-btn {
@@ -91,50 +101,51 @@
     transform: translate(-50%, -50%);
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    background-color: var(--surface);
-    border: 1px solid var(--border-color);
-    color: var(--text-muted);
+    gap: 0.45rem;
+    background-color: rgba(14, 22, 38, 0.95);
+    border: 1px solid rgba(76, 224, 210, 0.18);
+    color: var(--text-primary);
     font-family: var(--font-sans);
     font-size: 0.75rem;
-    font-weight: 500;
-    padding: 0.35rem 0.65rem;
-    border-radius: 2px;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 5;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
     outline: none;
 }
 
 .skill-node-btn:focus-visible {
     border-color: var(--accent-signal);
-    color: var(--text-primary);
+    color: #FFFFFF;
     outline: 2px solid var(--accent-signal);
     outline-offset: 2px;
 }
 
 .skill-node-btn.active {
-    color: var(--text-primary);
+    color: #070B14;
     border-color: var(--accent-signal);
-    background-color: var(--surface-hover);
-    box-shadow: 0 0 12px rgba(76, 224, 210, 0.2);
+    background-color: var(--accent-signal);
+    box-shadow: 0 0 16px rgba(76, 224, 210, 0.4);
     z-index: 10;
 }
 
 .skill-node-btn.dimmed {
-    opacity: 0.45;
+    opacity: 0.35;
 }
 
 .node-indicator {
     width: 5px;
     height: 5px;
-    background-color: var(--text-muted);
+    background-color: var(--accent-signal);
     border-radius: 50%;
     transition: all 0.25s ease;
+    box-shadow: 0 0 4px var(--accent-signal);
 }
 
 .skill-node-btn.active .node-indicator {
-    background-color: var(--accent-signal);
-    box-shadow: 0 0 6px var(--accent-signal);
+    background-color: #070B14;
+    box-shadow: none;
 }

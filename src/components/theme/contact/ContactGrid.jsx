@@ -14,7 +14,7 @@ export const ContactGrid = ({ personalInfo }) => {
                 <span className="section-eyebrow">// retrieve_contact</span>
                 <div className="contact-heading-row">
                     <h2 className="text-3xl font-display font-bold">
-                        Get in <span className="text-gradient">Touch</span>
+                        Get in <span className="text-highlight">Touch</span>
                     </h2>
                     <a 
                         href={`mailto:${personalInfo.email}`} 

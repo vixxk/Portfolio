@@ -2,7 +2,7 @@
     position: relative;
     height: 300vh;
     width: 100%;
-    background: #050811;
+    background: var(--bg, #070B14);
 }
 
 .experience-sticky-wrapper {

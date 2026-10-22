@@ -4,11 +4,22 @@ const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState(() => {
-        return localStorage.getItem('portfolio-theme') || 'chess';
+        // Clean up legacy key where 'chess' was saved as default in past sessions
+        const legacy = localStorage.getItem('portfolio-theme');
+        if (legacy) {
+            localStorage.removeItem('portfolio-theme');
+        }
+        
+        // Use v2 storage key; default is always 'dark'
+        const saved = localStorage.getItem('portfolio-theme-v2');
+        if (saved === 'chess' || saved === 'dark') {
+            return saved;
+        }
+        return 'dark';
     });
 
     useEffect(() => {
-        localStorage.setItem('portfolio-theme', theme);
+        localStorage.setItem('portfolio-theme-v2', theme);
         if (theme === 'chess') {
             document.documentElement.classList.add('chess-theme');
         } else {
@@ -17,11 +28,11 @@ export const ThemeProvider = ({ children }) => {
     }, [theme]);
 
     const toggleTheme = () => {
-        setTheme(prev => prev === 'default' ? 'chess' : 'default');
+        setTheme(prev => prev === 'chess' ? 'dark' : 'chess');
     };
 
     return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <ThemeContext.Provider value={{ theme, toggleTheme, isChess: theme === 'chess' }}>
             <div className={theme === 'chess' ? 'chess-theme' : ''}>
                 {children}
             </div>
@@ -30,3 +41,4 @@ export const ThemeProvider = ({ children }) => {
 };
 
 export const useTheme = () => useContext(ThemeContext);
+

@@ -131,7 +131,7 @@ export const Skills = () => {
                 >
                     <span className="section-eyebrow">// retrieve_capabilities</span>
                     <h2 className="text-3xl font-display font-bold">
-                        Technical <span className="text-gradient">Space</span>
+                        Technical <span className="text-highlight">Space</span>
                     </h2>
                     <div className="section-line"></div>
                 </motion.div>

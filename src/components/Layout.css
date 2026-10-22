@@ -16,8 +16,12 @@
 }
 
 .main-content {
-  padding-top: 6rem;
+  padding-top: 0;
   padding-bottom: 0;
+}
+
+.chess-theme .main-content {
+  padding-top: 6rem;
 }
 
 .footer {

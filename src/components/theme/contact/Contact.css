@@ -203,13 +203,14 @@
     display: inline-block !important;
 }
 
-.github-calendar-scroll-wrapper::-webkit-scrollbar {
-    height: 6px;
+.github-calendar-scroll-wrapper {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-.github-calendar-scroll-wrapper::-webkit-scrollbar-thumb {
-    background: rgba(76, 224, 210, 0.3);
-    border-radius: 3px;
+.github-calendar-scroll-wrapper::-webkit-scrollbar {
+    display: none;
+    height: 0;
 }
 
 .contact-details-container {

@@ -1,51 +1,9 @@
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { resumeData } from '../../../data/resume';
 import { Github, Linkedin, Mail } from 'lucide-react';
 import { WatermarkKing } from './WatermarkKing';
 import './ChessHero.css';
-
-const useSequentialPhrases = (phrases, stepDurations = 2500, initialDelay = 600, active = true) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [hasStarted, setHasStarted] = useState(false);
-
-    useEffect(() => {
-        if (!active) {
-            setCurrentIndex(phrases.length - 1);
-            setHasStarted(true);
-            return;
-        }
-
-        const startTimer = setTimeout(() => {
-            setHasStarted(true);
-        }, initialDelay);
-
-        return () => clearTimeout(startTimer);
-    }, [initialDelay, active, phrases.length]);
-
-    useEffect(() => {
-        if (!active || !hasStarted) {
-            return;
-        }
-
-        if (currentIndex < phrases.length - 1) {
-            const currentDuration = Array.isArray(stepDurations) 
-                ? (stepDurations[currentIndex] ?? 2500)
-                : stepDurations;
-
-            const timer = setTimeout(() => {
-                setCurrentIndex(prev => prev + 1);
-            }, currentDuration);
-            return () => clearTimeout(timer);
-        }
-    }, [currentIndex, phrases.length, stepDurations, active, hasStarted]);
-
-    return {
-        currentIndex,
-        hasStarted,
-        isResolved: currentIndex === phrases.length - 1
-    };
-};
 
 export const ChessHero = () => {
     const { personalInfo } = resumeData;
@@ -57,13 +15,6 @@ export const ChessHero = () => {
     }, []);
 
     const phrases = ["Open To Work", "Full Stack GenAI Developer", personalInfo.name];
-
-    const { currentIndex, hasStarted } = useSequentialPhrases(
-        phrases,
-        [2500, 3500],
-        600,
-        !prefersReducedMotion
-    );
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -88,25 +39,32 @@ export const ChessHero = () => {
                     {prefersReducedMotion ? (
                         <span className="highlight">{personalInfo.name}</span>
                     ) : (
-                        <span style={{ display: 'block', position: 'relative', minHeight: '1.2em', verticalAlign: 'bottom' }}>
-                            <AnimatePresence mode="wait">
-                                {hasStarted && (
-                                    <motion.span
-                                        key={currentIndex}
-                                        className="highlight"
-                                        initial={{ opacity: 0, y: 15 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -15 }}
-                                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                                        style={{ 
-                                            display: 'block', 
-                                            whiteSpace: 'nowrap'
-                                        }}
-                                    >
-                                        {phrases[currentIndex]}
-                                    </motion.span>
-                                )}
-                            </AnimatePresence>
+                        <span className="chess-roller-viewport">
+                            <motion.span
+                                className="chess-roller-strip"
+                                initial={{ y: '0em' }}
+                                animate={{
+                                    y: ['0em', '0em', '-1.3em', '-1.3em', '-2.6em']
+                                }}
+                                transition={{
+                                    duration: 8.2,
+                                    times: [0, 0.22, 0.48, 0.70, 1],
+                                    ease: [
+                                        'linear',
+                                        [0.33, 1, 0.68, 1],
+                                        'linear',
+                                        [0.16, 1, 0.3, 1]
+                                    ]
+                                }}
+                            >
+                                {phrases.map((phrase, idx) => (
+                                    <span key={idx} className="chess-roller-row">
+                                        <span className="highlight">
+                                            {phrase}
+                                        </span>
+                                    </span>
+                                ))}
+                            </motion.span>
                         </span>
                     )}
                 </motion.h1>

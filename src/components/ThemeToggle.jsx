@@ -17,7 +17,7 @@ export const ThemeToggle = () => {
             <div
                 onClick={toggleTheme}
                 className={`theme-toggle-track ${isChess ? 'chess' : ''}`}
-                title={isChess ? "Switch to Retrieval Space Theme" : "Switch to Chess Theme"}
+                title={isChess ? "Switch to Dark Theme" : "Switch to Chess Theme"}
                 role="switch"
                 aria-checked={isChess}
                 tabIndex={0}
