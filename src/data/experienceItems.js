@@ -107,7 +107,7 @@ export const WORK_EXPERIENCE_ITEMS = [
     image: starpixLanding,
     logo: starpixLogo,
     stack: ["React Native", "Expo", "Node.js", "Express", "MongoDB", "AWS S3", "i18next"],
-    links: { github: "https://github.com/vixxk/Starpix", live: null },
+    links: { github: "https://github.com/vixxk/Starpix", live: "https://play.google.com/store/apps/details?id=com.starpix.app" },
     points: [
       "Implemented complete multi-language localization (i18next) across all screens and dynamic status card templates.",
       "Optimized mobile image processing and AI uploads using native expo-file-system streams to AWS S3, eliminating timeouts."
